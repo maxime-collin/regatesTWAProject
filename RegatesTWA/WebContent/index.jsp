@@ -29,12 +29,7 @@
 				return confirm(msg);
 			}
 		</script>
-		
-		<style>
-		#menu {
-		margin-bottom:70px;
-		}
-		</style>
+
 		<title>Projet TWA - Jean-sébastien Rolland &amp; Maxime Collin</title>
 	</head>
 	<body>
