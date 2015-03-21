@@ -206,7 +206,7 @@ public class Dao {
 
 	public List<Regate> listerRegates() {
 		System.out.println("dao listerRegates");
-		List <Regate> lst = em.createQuery("select regate from Regate r").getResultList();
+		List <Regate> lst = em.createQuery("select r from Regate r").getResultList();
 		return lst;
 	}
 
