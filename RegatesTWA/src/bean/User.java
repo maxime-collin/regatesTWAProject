@@ -19,6 +19,7 @@ public class User {
 	public String identifiant;
 	public String motDePasse;
 	public String url;
+	public String nationalite;
 	public int admin;
 	
 	
@@ -83,4 +84,11 @@ public class User {
 		this.admin = admin;
 	}
 
+	@Column(name = "nationalite")
+	public String getNationalite() {
+		return nationalite;
+	}
+	public void setNationalite(String na) {
+		nationalite = na;
+	}
 }
