@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="row">
+		<div class="col-md-3">
+			<label>Identifiant * :</label>
+		</div>
+		<div class="col-md-7">
+			<input 	id="identifiant"
+				name="identifiant"
+				required
+				type="text"
+			/>
+		</div>
+	</div>
+	<div class="row" ng-show="form.identifiant.$dirty">
+		<div ng-show="form.identifiant.$error.required">Veuillez saisir votre identifiant</div>
+	</div>
+	      			
+</div>
+
+<div class="row">
+	<div class="row">
+		<div class="col-md-3">
+			<label>Mot de passe * :</label>
+		</div>
+		<div class="col-md-7">
+			<input 	id="mdp"
+				name="mdp"
+				required
+				type="password"
+			/>
+		</div>
+	</div>
+	<div class="row" ng-show="form.mdp.$dirty">
+		<div ng-show="form.mdp.$error.required">Veuillez saisir votre mot de passe</div>
+	</div>
+	      			
+</div>

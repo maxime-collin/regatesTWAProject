@@ -1,0 +1,58 @@
+<!-- $dirty	True if regate has already interacted with the form. -->
+<div class="row">
+	<div class="row">
+		<div class="col-md-3">
+			<label>Intitulé * :</label>
+		</div>
+		<div class="col-md-7">
+			<input 	id="name"
+				name="name"
+				value="regate.name" 
+				ng-model="regate.name"
+				ng-model-options="{ updateOn: 'blur' }"
+				required
+				type="text"
+			/>
+		</div>
+	</div>
+	<div class="row" ng-show="form.name.$dirty">
+		<div ng-show="form.name.$error.required">Veuillez saisir un Intitulé</div>
+	</div>
+	      			
+</div>
+
+<div class="row">
+	<div class="row">
+		<div class="col-md-3">
+			<label>Description :</label>
+		</div>
+		<div class="col-md-7">
+			<textarea 	id="description"
+				name="description"
+				value="regate.description"
+				ng-model="regate.description" 
+				ng-model-options="{ updateOn: 'blur' }"
+			></textarea>
+		</div>
+	</div>
+	<div class="row" ng-show="form.description.$dirty">
+	</div>
+</div>
+
+<div class="row">
+	<input type="submit" class="btn btn-primary col-md-offset-3" value="Ajouter" />
+</div>
+			
+<div class="row" ng-show="erreurs.res == 'FAIL' ">
+	Erreurs signalées par le serveur (la validation côté client et côté serveur sont différentes pour montrer le fonctionnement):
+	<ul>
+		<li ng-show="erreurs.err['nom']">{{erreurs.err['nom']}}</li>
+		<li ng-show="erreurs.err['prenom']">{{erreurs.err['prenom']}}</li>
+	</ul>
+</div>
+
+<div class="row" ng-show="erreurs.res == 'SUCCESS' ">
+	Succès 
+	<br />
+	{{mess}}
+</div>

@@ -1,0 +1,41 @@
+<!-- $dirty	True if course has already interacted with the form. -->
+<div id="date" ng-include="'views/form_dateC.html'"></div>
+
+<div class="row">
+	<div class="row">
+		<div class="col-md-2">
+			<label>Coefficient * :</label>
+		</div>
+		<div class="col-md-8"><div class="col-md-3">
+			<input 	id="coefficient"
+						name="coefficient"
+						value="course.coefficient"
+						ng-model="course.coefficient"
+						ng-model-options="{ updateOn: 'blur' }"
+						required
+						type="number"
+			/>
+		</div></div>
+	</div>
+	<div class="row" ng-show="form.coefficient.$dirty">
+		<div ng-show="form.coefficient.$error.required">Veuillez saisir un coefficient</div>
+	</div>
+</div>
+
+<div class="row"><div class="col-md-offset-2 col-md-8"><div class="col-md-3">
+	<input type="submit" class="btn btn-primary" value="Ajouter" />
+</div></div></div>
+			
+<div class="row" ng-show="erreurs.res == 'FAIL' ">
+	Erreurs signalées par le serveur (la validation côté client et côté serveur sont différentes pour montrer le fonctionnement):
+	<ul>
+		<li ng-show="erreurs.err['nom']">{{erreurs.err['nom']}}</li>
+		<li ng-show="erreurs.err['prenom']">{{erreurs.err['prenom']}}</li>
+	</ul>
+</div>
+
+<div class="row" ng-show="erreurs.res == 'SUCCESS' ">
+	Succès 
+	<br />
+	{{mess}}
+</div>

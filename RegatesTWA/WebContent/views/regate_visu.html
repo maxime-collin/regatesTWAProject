@@ -1,0 +1,39 @@
+<header><h1>{{regate.nom}}</h1></header>
+
+<div ng_init="initVisu()">
+	<div id="detailRegate" class="row">
+		<div class="row">
+			<div class="col-md-3">Date de début :</div>
+			<div class="col-md-3">{{regate.dateDebut}}</div>
+			<div class="col-md-3">Date de fin :</div>
+			<div class="col-md-3">{{regate.dateFin}}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">Niveau :</div>
+			<div class="col-md-3">{{regate.niveau}}</div>
+			<div class="col-md-3">Type :</div>
+			<div class="col-md-3">{{regate.Type}}</div>
+		</div>
+		<div class="row">
+			<a ng-click="redirectToUpdateRegate(regate)" class="btn btn-primary glyphicon glyphicon-pencil"></a>
+			<a ng-click="deleteRegate(regate)" class="btn btn-danger glyphicon glyphicon-trash"></a>
+		</div>
+	</div>
+	
+	<div class="row">
+		<h2>Courses</h2>
+		<div id="courses" ng-include="'views/regate_visuCourses.html'"></div>
+	</div>
+
+	<div class="row">
+		<h2>Bateaux</h2>
+		<div id="bateaux" ng-include="'views/regate_visuBateaux.html'"></div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-3">
+			<button class="btn btn-primary" ng-click="redirectToInscription()">Inscription</button>
+		</div>
+	</div>
+	
+</div>

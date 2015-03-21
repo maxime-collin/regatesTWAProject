@@ -1,0 +1,40 @@
+<!-- $dirty	True if regate has already interacted with the form. -->
+<div class="row">
+	<div class="row">
+		<div class="col-md-3">
+			<label>N° * :</label>
+		</div>
+		<div class="col-md-7">
+			<input 	id="numero"
+				name="numero"
+				value="bateau.numero" 
+				ng-model="bateau.numero"
+				ng-model-options="{ updateOn: 'blur' }"
+				required
+				type="text"
+			/>
+		</div>
+	</div>
+	<div class="row" ng-show="form.numero.$dirty">
+		<div ng-show="form.numero.$error.required">Veuillez saisir un numéro</div>
+	</div>
+	      			
+</div>
+
+<div class="row">
+	<input type="submit" class="btn btn-primary col-md-offset-3" value="Ajouter" />
+</div>
+			
+<div class="row" ng-show="erreurs.res == 'FAIL' ">
+	Erreurs signalées par le serveur (la validation côté client et côté serveur sont différentes pour montrer le fonctionnement):
+	<ul>
+		<li ng-show="erreurs.err['nom']">{{erreurs.err['nom']}}</li>
+		<li ng-show="erreurs.err['prenom']">{{erreurs.err['prenom']}}</li>
+	</ul>
+</div>
+
+<div class="row" ng-show="erreurs.res == 'SUCCESS' ">
+	Succès 
+	<br />
+	{{mess}}
+</div>

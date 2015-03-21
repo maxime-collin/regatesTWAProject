@@ -1,0 +1,41 @@
+<header class="page-header">
+	<h1>Liste des régates</h1>
+</header>
+
+<div id="corps" class="row">
+	<div id="visuRegate" class="row">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Actions</th>
+					<th>Intitulé</th>
+					<th>Dates</th>
+					<th>Niveau</th>
+					<th>Type</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					class=""					
+					onmouseover="this.className='info';"
+					onmouseout="this.className='';"
+				 	ng-repeat="regate in listeRegates"
+				 	>
+				 	<td>
+						<a ng-click="redirectToUpdateRegate(regate)" class="btn btn-primary glyphicon glyphicon-pencil"></a>
+						<a ng-click="deleteRegate(regate)" class="btn btn-danger glyphicon glyphicon-trash"></a>
+					</td>
+					<td ng-click="redirectToVisuRegate(regate)">{{regate.nom}}</td>
+					<td ng-click="redirectToVisuRegate(regate)">{{regate.dateDebut}}->{{regate.dateFin}}</td>
+					<td ng-click="redirectToVisuRegate(regate)">{{regate.Niveau}}</td>
+					<td ng-click="redirectToVisuRegate(regate)">{{regate.Type}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<button class="btn btn-primary" ng-click="redirectToAddRegate()">Ajouter</button>
+		</div>
+	</div>
+</div>

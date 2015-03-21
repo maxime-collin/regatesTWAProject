@@ -1,0 +1,152 @@
+<!-- $dirty	True if user has already interacted with the form. -->
+<div class="row">
+	<div class="row">
+		<div class="col-md-3">
+			<label>Numéro de licence * :</label>
+		</div>
+		<div class="col-md-7">
+			<input 	id="numeroLicence"
+				name="numeroLicence"
+				value="user.numeroLicence" 
+				ng-model="user.numeroLicence"
+				ng-model-options="{ updateOn: 'blur' }"
+				required
+				type="text"
+			/>
+		</div>
+	</div>
+	<div class="row" ng-show="form.numeroLicence.$dirty">
+		<div ng-show="form.numerolicence.$error.required">Veuillez saisir un numéro de licence</div>
+	</div>
+	      			
+</div>
+
+<div class="row">
+	<div class="row">
+		<div class="col-md-3">
+			<label>Identifiant * :</label>
+		</div>
+		<div class="col-md-7">
+			<input 	id="identifiant"
+				name="identifiant"
+				value="user.identifiant" 
+				ng-model="user.identifiant" 
+				ng-model-options="{ updateOn: 'blur' }"
+				required
+				type="text"
+		 		ng-pattern="/^[a-zA-Z]{2,}$/"
+			/>
+		</div>
+	</div>
+	<div class="row" ng-show="form.identifiant.$dirty">
+		<div ng-show="form.identifiant.$error.required">Veuillez saisir un identifiant</div>
+		<div ng-show="form.identifiant.$error.pattern">Veuillez saisir au moins deux caractères</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="row">
+		<div class="col-md-3">
+			<label>Mot de passe * :</label>
+		</div>
+		<div class="col-md-7">
+			<input 	id="motDePasse"
+				name="motDePasse"
+				value="user.motDePasse" 
+				ng-model="user.motDePasse" 
+				ng-model-options="{ updateOn: 'blur' }"
+				required
+				type="password"
+		 		ng-pattern="/^[a-zA-Z]{2,}$/"
+			/>
+		</div>
+	</div>
+	<div class="row" ng-show="form.motDePasse.$dirty">
+		<div ng-show="form.motDePasse.$error.required">Veuillez saisir un mot de passe</div>
+		<div ng-show="form.motDePasse.$error.pattern">Veuillez saisir au moins deux caractères</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="row">
+		<div class="col-md-3">
+			<label>Nom * :</label>
+		</div>
+		<div class="col-md-7">
+			<input 	id="nom"
+				name="nom"
+				value="user.nom" 
+				ng-model="user.nom" 
+				ng-model-options="{ updateOn: 'blur' }"
+				required
+				type="text"
+		 		ng-pattern="/^[a-zA-Z]{2,}$/"
+			/>
+		</div>
+	</div>
+	<div class="row" ng-show="form.nom.$dirty">
+		<div ng-show="form.nom.$error.required">Veuillez saisir un nom</div>
+		<div ng-show="form.nom.$error.pattern">Veuillez saisir au moins deux caractères</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="row">
+		<div class="col-md-3">
+			<label>Prénom * :</label>
+		</div>
+		<div class="col-md-7">
+			<input 	id="prenom"
+				name="prenom"
+				value="user.prenom" 
+				ng-model="user.prenom" 
+				ng-model-options="{ updateOn: 'blur' }"
+				required
+				type="text"
+		 		ng-pattern="/^[a-zA-Z]{2,}$/"
+			/>
+		</div>
+	</div>
+	<div class="row" ng-show="form.prenom.$dirty">
+		<div ng-show="form.prenom.$error.required">Veuillez saisir un prénom</div>
+		<div ng-show="form.prenom.$error.pattern">Veuillez saisir au moins deux caractères</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="row">
+		<div class="col-md-3">
+			<label>URL :</label>
+		</div>
+		<div class="col-md-7">
+			<input 	id="url"
+				name="url"
+				value="user.url" 
+				ng-model="user.url" 
+				ng-model-options="{ updateOn: 'blur' }"
+				type="url"
+			/>
+		</div>
+	</div>
+	<div class="row" ng-show="form.url.$dirty">
+	</div>
+</div>
+
+<div class="row">
+	<button class="btn btn-primary  col-md-offset-3" ng-click="listerUsers()">Annuler</button>
+	<input type="submit" class="btn btn-primary" value="Envoyer" />
+</div>
+			
+<div class="row" ng-show="erreurs.res == 'FAIL' ">
+	Erreurs signalées par le serveur (la validation côté client et côté serveur sont différentes pour montrer le fonctionnement):
+	<ul>
+		<li ng-show="erreurs.err['nom']">{{erreurs.err['nom']}}</li>
+		<li ng-show="erreurs.err['prenom']">{{erreurs.err['prenom']}}</li>
+	</ul>
+</div>
+
+<div class="row" ng-show="erreurs.res == 'SUCCESS' ">
+	Succès 
+	<br />
+	{{mess}}
+</div>

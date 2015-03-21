@@ -1,0 +1,43 @@
+<header class="page-header">
+	<h1>Liste des users</h1>
+</header>
+
+<div id="corps" class="row">
+	<div id="visuUser" class="row">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Actions</th>
+					<th>Id</th>
+					<th>N° Licence</th>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Identifiant</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					class=""					
+					onmouseover="this.className='info';"
+					onmouseout="this.className='';"
+				 	ng-repeat="user in listeUsers"
+				 	>
+				 	<td>
+						<a ng-click="redirectToUpdateUser(user)" class="btn btn-primary glyphicon glyphicon-pencil"></a>
+						<a ng-click="deleteUser(user)" class="btn btn-danger glyphicon glyphicon-trash"></a>
+					</td>
+					<td ng-click="openUserURL(user)">{{user.id}}</td>
+					<td ng-click="openUserURL(user)">{{user.numeroLicence}}</td>
+					<td ng-click="openUserURL(user)">{{user.nom}}</td>
+					<td ng-click="openUserURL(user)">{{user.prenom}}</td>
+					<td ng-click="openUserURL(user)">{{user.identifiant}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<button class="btn btn-primary" ng-click="redirectToAddUser()">Ajouter</button>
+		</div>
+	</div>
+</div>
