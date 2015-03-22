@@ -1,5 +1,6 @@
 package control;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.PersistenceContext;
@@ -10,8 +11,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.sun.org.apache.xerces.internal.impl.dv.dtd.IDREFDatatypeValidator;
+
 import bean.Bateau;
 import bean.Course;
+import bean.InscriptionCourse;
+import bean.InscriptionRegate;
 import bean.Regate;
 import bean.User;
 
@@ -212,14 +217,20 @@ public class Dao {
 
 	public List<Course> listerRegateCourses(Integer id) {
 		System.out.println("dao listerRegateCourses");
-		List <Course> lst = em.createQuery("select course from Course c WHERE c.regate.id =" + id).getResultList();
-		return lst;
+		List<Course> listC = em.createQuery("select c from Course c Where c.regate.id = " + id).getResultList();
+				
+		return listC;
 	}
 
 	public List<Bateau> listerRegateBateaux(Integer id) {
-		System.out.println("dao listerRegates");
-		List <Bateau> lst = em.createQuery("select bateaux from InscriptionRegate ir WHERE ir.regate.id =" + id).getResultList();
-		return lst;
+		System.out.println("dao listerRegateBateaux");
+		Regate regate = returnRegate(id);
+		List<Bateau> listB = new ArrayList<Bateau>();
+		
+		for (InscriptionRegate ir : regate.getInscrBateaux())
+			listB.add(ir.getPkIR().getBateau());
+		
+		return listB;
 	}
 
 	public void supprimerBateauToRegate(Regate r, Bateau b) {

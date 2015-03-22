@@ -1,42 +1,44 @@
 package bean;
 
+import java.io.Serializable;
+
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 
 @Entity
 @Table( name = "r_inscriptionRegate" )
-public class InscriptionRegate {
+@AssociationOverrides({	@AssociationOverride(name = "pkIR.regate", joinColumns = @JoinColumn(name = "regate")),
+	@AssociationOverride(name = "pkIR.bateau", joinColumns = @JoinColumn(name = "bateau"))
+})
+public class InscriptionRegate implements Serializable {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Integer id;
+	private static final long serialVersionUID = -2687880721590367850L;
 	
-	public int regate;
 	
-	public int classement;
+	private InscriptionRegateId pkIR = new InscriptionRegateId();
+	private int classement;
 
 	
 	public InscriptionRegate(){
 		
 	}
 
-	@Column(name = "id")
-	public Integer getId() {
-		return id;
+	@EmbeddedId
+	public InscriptionRegateId getPkIR() {
+		return pkIR;
 	}
-
-	@Column(name = "regate")
-	public int getRegate() {
-		return regate;
-	}
-	public void setRegate(int regate) {
-		this.regate = regate;
-	}
+	public void setPkIR(InscriptionRegateId pkIR) {
+		this.pkIR = pkIR;
+	}	
 	
 	@Column(name = "classement")
 	public int getClassement() {

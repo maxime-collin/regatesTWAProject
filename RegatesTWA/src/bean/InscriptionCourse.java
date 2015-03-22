@@ -1,12 +1,17 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,39 +19,36 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table( name = "r_inscriptionCourse" )
-public class InscriptionCourse {
+@AssociationOverrides({	@AssociationOverride(name = "pkIC.course", joinColumns = @JoinColumn(name = "course")),
+						@AssociationOverride(name = "pkIC.bateau", joinColumns = @JoinColumn(name = "bateau"))
+})
+public class InscriptionCourse implements Serializable {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Integer id;
+	private static final long serialVersionUID = -1442756526149710606L;
 	
-	public int course;
-	public int classement;
+	private InscriptionCourseId pkIC = new InscriptionCourseId();
+	private int classement;
 	
 	@Temporal(TemporalType.DATE)
-	public Date dateArrivee;
+	private Date dateArrivee;
 	
 	@Temporal(TemporalType.TIME)
-	public Date heureArrivee;
+	private Date heureArrivee;
 
 
 	public InscriptionCourse(){
 		
 	}
 
-	@Column(name = "id")
-	public Integer getId() {
-		return id;
+
+	@EmbeddedId
+	public InscriptionCourseId getPkIC() {
+		return pkIC;
+	}
+	public void setPkIC(InscriptionCourseId pkIC) {
+		this.pkIC = pkIC;
 	}
 
-	@Column(name = "course")
-	public int getCourse() {
-		return course;
-	}
-	public void setCourse(int course) {
-		this.course = course;
-	}
-		
 	@Column(name = "dateArrivee")
 	public Date getDateArrivee() {
 		return dateArrivee;

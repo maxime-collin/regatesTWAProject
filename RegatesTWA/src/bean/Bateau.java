@@ -1,10 +1,18 @@
 package bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -14,13 +22,25 @@ public class Bateau {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Integer id;
+	private Integer id;
 	
-	public String numero;
-	public String nom;
-	public String capitaine;
-	public String type;
-	public String nationalite;
+	private String numero;
+	private String nom;	
+	private String type;
+	private String nationalite;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="capitaine")
+	private User capitaine;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pkE.bateau", cascade=CascadeType.ALL)
+	private List<Equipage> equipage = new ArrayList<Equipage>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pkIR.bateau", cascade=CascadeType.ALL)
+	private List<InscriptionRegate> inscrRegates = new ArrayList<InscriptionRegate>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pkIC.bateau", cascade=CascadeType.ALL)
+	private List<InscriptionCourse> inscrCourses = new ArrayList<InscriptionCourse>();
 	
 	public Bateau(){
 		
@@ -47,11 +67,10 @@ public class Bateau {
 		this.numero = numero;
 	}
 
-	@Column(name = "capitaine")
-	public String getCapitaine() {
+	public User getCapitaine() {
 		return capitaine;
 	}
-	public void setCapitaine(String capitaine) {
+	public void setCapitaine(User capitaine) {
 		this.capitaine = capitaine;
 	}
 
@@ -69,6 +88,27 @@ public class Bateau {
 	}
 	public void setNationalite(String nationalite) {
 		this.nationalite = nationalite;
+	}
+
+	public List<Equipage> getEquipage() {
+		return equipage;
+	}
+	public void setEquipage(List<Equipage> equipage) {
+		this.equipage = equipage;
+	}
+
+	public List<InscriptionRegate> getInscrRegates() {
+		return inscrRegates;
+	}
+	public void setInscrRegates(List<InscriptionRegate> inscrRegates) {
+		this.inscrRegates = inscrRegates;
+	}
+
+	public List<InscriptionCourse> getInscrCourses() {
+		return inscrCourses;
+	}
+	public void setInscrCourses(List<InscriptionCourse> inscrCourses) {
+		this.inscrCourses = inscrCourses;
 	}
 
 }

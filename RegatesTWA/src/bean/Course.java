@@ -1,12 +1,19 @@
 package bean;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,22 +25,28 @@ public class Course {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Integer id;
+	private Integer id;
 	
 	@Temporal(TemporalType.DATE)
-	public Date dateDebut;
+	private Date dateDebut;
 	
 	@Temporal(TemporalType.TIME)
-	public Date heureDebut;
+	private Date heureDebut;
 	
 	@Temporal(TemporalType.DATE)
-	public Date dateFin;
+	private Date dateFin;
 	
 	@Temporal(TemporalType.TIME)
-	public Date heureFin;
+	private Date heureFin;
 
-	public double coefficient;
-	public int regate;
+	private double coefficient;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="regate")
+	private Regate regate;
+		
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pkIC.course", cascade=CascadeType.ALL)
+	private List<InscriptionCourse> inscrBateaux = new ArrayList<InscriptionCourse>();
 	
 	public Course(){
 		
@@ -82,6 +95,20 @@ public class Course {
 	}
 	public void setCoefficient(double coefficient) {
 		this.coefficient = coefficient;
+	}
+
+	public Regate getRegate() {
+		return regate;
+	}
+	public void setRegate(Regate regate) {
+		this.regate = regate;
+	}
+
+	public List<InscriptionCourse> getInscrBateaux() {
+		return inscrBateaux;
+	}
+	public void setInscrBateaux(List<InscriptionCourse> inscrBateaux) {
+		this.inscrBateaux = inscrBateaux;
 	}
 
 }

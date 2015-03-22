@@ -1,12 +1,17 @@
 package bean;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,24 +23,27 @@ public class Regate {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Integer id;
+	private Integer id;
 	
-	public String nom;
-	public String description;
-	public String niveau;
-	public String type;
-	
-	@Temporal(TemporalType.DATE)
-	public Date dateDebut;
-	
-	@Temporal(TemporalType.TIME)
-	public Date heureDebut;
+	private String nom;
+	private String description;
+	private String niveau;
+	private String type;
 	
 	@Temporal(TemporalType.DATE)
-	public Date dateFin;
+	private Date dateDebut;
 	
 	@Temporal(TemporalType.TIME)
-	public Date heureFin;
+	private Date heureDebut;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dateFin;
+	
+	@Temporal(TemporalType.TIME)
+	private Date heureFin;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pkIR.regate", cascade=CascadeType.ALL)
+	private List<InscriptionRegate> inscrBateaux = new ArrayList<InscriptionRegate>();
 	
 	
 	public Regate(){
@@ -109,6 +117,13 @@ public class Regate {
 	}
 	public void setHeureFin(Date heureFin) {
 		this.heureFin = heureFin;
+	}
+
+	public List<InscriptionRegate> getInscrBateaux() {
+		return inscrBateaux;
+	}
+	public void setInscrBateaux(List<InscriptionRegate> inscrBateaux) {
+		this.inscrBateaux = inscrBateaux;
 	}
 
 }

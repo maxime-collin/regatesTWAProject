@@ -1,10 +1,16 @@
 package bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -13,15 +19,17 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id
-	public String numeroLicence;
-	public String nom;
-	public String prenom;
-	public String identifiant;
-	public String motDePasse;
-	public String url;
-	public String nationalite;
-	public int admin;
+	private String numeroLicence;
+	private String nom;
+	private String prenom;
+	private String identifiant;
+	private String motDePasse;
+	private String url;
+	private String nationalite;
+	private int admin;
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pkE.equipier", cascade=CascadeType.ALL)
+	private List<Equipage> bateaux = new ArrayList<Equipage>();
 	
 	public User(){
 		
@@ -91,4 +99,12 @@ public class User {
 	public void setNationalite(String na) {
 		nationalite = na;
 	}
+
+	public List<Equipage> getBateaux() {
+		return bateaux;
+	}
+	public void setBateaux(List<Equipage> bateaux) {
+		this.bateaux = bateaux;
+	}
+
 }
