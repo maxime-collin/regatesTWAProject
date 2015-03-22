@@ -1,9 +1,9 @@
 monAppControllers.controller('RegateController', [
     '$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams) {
-    	
+    	    	
     	$scope.regate = {};
     	$scope.regate.id = "";
-    	$scope.regate.nom = "";
+    	$scope.regate.nom = "toto";
     	$scope.regate.niveau = "";
     	$scope.regate.type = "";
     	$scope.regate.description = "";
@@ -13,18 +13,18 @@ monAppControllers.controller('RegateController', [
     	$scope.regate.heureFin = new Date();
     	
     	$scope.regate.dateDebutPicker = {};
-    	$scope.regate.dateDebutPicker.day = 0;
-    	$scope.regate.dateDebutPicker.month = 0;
-    	$scope.regate.dateDebutPicker.year = 0;
-    	$scope.regate.dateDebutPicker.hour = 0;
-    	$scope.regate.dateDebutPicker.min = 0;
+    	$scope.regate.dateDebutPicker.day = 1;
+    	$scope.regate.dateDebutPicker.month = 1;
+    	$scope.regate.dateDebutPicker.year = 2000;
+    	$scope.regate.dateDebutPicker.hour = 1;
+    	$scope.regate.dateDebutPicker.min = 1;
     	
     	$scope.regate.dateFinPicker = {};
-    	$scope.regate.dateFinPicker.day = 0;
-    	$scope.regate.dateFinPicker.month = 0;
-    	$scope.regate.dateFinPicker.year = 0;
-    	$scope.regate.dateFinPicker.hour = 0;
-    	$scope.regate.dateFinPicker.min = 0;
+    	$scope.regate.dateFinPicker.day = 1;
+    	$scope.regate.dateFinPicker.month = 1;
+    	$scope.regate.dateFinPicker.year = 2000;
+    	$scope.regate.dateFinPicker.hour = 1;
+    	$scope.regate.dateFinPicker.min = 1;
     	
     	$scope.regate.inscrBateaux = [];
     	
@@ -36,8 +36,10 @@ monAppControllers.controller('RegateController', [
     	                  {label : 'Mondiale', value : 'Mondiale'},
     	];    	
     	// le niveau selectionne dans le cas d'une modification
-    	$scope.selectedNiveau = "";
-    	
+    	/*$scope.selectedNiveau = {};
+    	$scope.selectedNiveau.label = '';
+    	$scope.selectedNiveau.value = '';
+    	*/
     	// liste des types a afficher dans le select
     	$scope.types = [ 
     	                 {label : 'Inter-Séries', value : 'InterSeries'},
@@ -165,8 +167,10 @@ monAppControllers.controller('RegateController', [
     		$scope.convertDate();
     		$scope.niveau = $scope.selectedNiveau.value;
     		$scope.type = $scope.selectedType.value;
+    		
+    		console.log($scope.selectedNiveau.toSource() + ' titi');
 
-    		$http({
+    		/*$http({
     			method : 'POST',
     			url : 'enregistrerRegate.htm',
     			headers : { 'Content-Type' : 'application/json' },
@@ -178,6 +182,7 @@ monAppControllers.controller('RegateController', [
     						$location.path("/regates");
     					}
     				});
+    				*/
     	};
     	
     	// recupere la regate que l'on veut modifier
