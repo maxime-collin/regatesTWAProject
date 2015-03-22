@@ -1,0 +1,213 @@
+<!-- $dirty	True if date has already interacted with the form. -->
+<!-- date début -->
+<div class="row">
+	<div class="row">
+		<div class="col-md-2">
+			<label>Date DébutA * :</label>
+		</div>
+		<div class="col-md-8">
+			<div class="col-md-3">
+				<input 	id="day"
+					name="day"
+					value="regate.dateDebutPicker.day" 
+					ng-model="regate.dateDebutPicker.day"
+					ng-model-options="{ updateOn: 'blur' }"
+					required
+					type="number"
+					min="1"
+					max="31"
+				/>
+			</div>
+			<div class="row" ng-show="form.day.$dirty">
+				<div ng-show="form.day.$error.required">Veuillez saisir un jour</div>
+			</div>
+			
+			<div class="col-md-1"><label>/</label></div>
+			
+			<div class="col-md-3">
+				<input 	id="month"
+					name="month"
+					value="regate.dateDebutPicker.month" 
+					ng-model="regate.dateDebutPicker.month"
+					ng-model-options="{ updateOn: 'blur' }"
+					required
+					type="number"
+					min="1"
+					max="12"
+				/>
+			</div>
+			<div class="row" ng-show="form.day.$dirty">
+				<div ng-show="form.day.$error.required">Veuillez saisir un mois</div>
+			</div>
+			
+			<div class="col-md-1"><label>/</label></div>
+			
+			<div class="col-md-3">
+				<input 	id="year"
+					name="year"
+					value="regate.dateDebutPicker.year" 
+					ng-model="regate.dateDebutPicker.year"
+					ng-model-options="{ updateOn: 'blur' }"
+					required
+					type="number"
+					min="1970"
+				/>		
+			</div>
+			<div class="row" ng-show="form.day.$dirty">
+				<div ng-show="form.day.$error.required">Veuillez saisir une année</div>
+			</div>
+			
+		</div>
+	</div>	      			
+</div>
+
+<div class="row">
+	<div class="row">
+		<div class="col-md-2">
+			<label>Heure * :</label>
+		</div>
+		<div class="col-md-8">
+			<div class="col-md-3">
+				<input 	id="hour"
+					name="hour"
+					value="regate.dateDebutPicker.hour" 
+					ng-model="regate.dateDebutPicker.hour"
+					ng-model-options="{ updateOn: 'blur' }"
+					required
+					type="number"
+					min="0"
+					max="23"
+				/>
+			</div>
+			<div class="row" ng-show="form.hour.$dirty">
+				<div ng-show="form.hour.$error.required">Veuillez saisir une heure</div>
+			</div>
+			
+			<div class="col-md-1"><label>H</label></div>
+						
+			<div class="col-md-3">
+				<input 	id="min"
+					name="min"
+					value="regate.dateDebutPicker.min" 
+					ng-model="regate.dateDebutPicker.min"
+					ng-model-options="{ updateOn: 'blur' }"
+					required
+					type="number"
+					min="0"
+					max="59"
+				/>
+			</div>
+			<div class="row" ng-show="form.min.$dirty">
+				<div ng-show="form.min.$error.required">Veuillez saisir des minutes</div>
+			</div>
+						
+		</div>
+	</div>	      			
+</div>
+
+<!-- date Fin -->
+
+<div class="row">
+	<div class="row">
+		<div class="col-md-2">
+			<label>Date Fin * :</label>
+		</div>
+		<div class="col-md-8">
+			<div class="col-md-3">
+				<input 	id="day"
+					name="day"
+					value="regate.dateFinPicker.day" 
+					ng-model="regate.dateFinPicker.day"
+					ng-model-options="{ updateOn: 'blur' }"
+					required
+					type="number"
+					min="1"
+					max="31"
+				/>
+			</div>
+			<div class="row" ng-show="form.day.$dirty">
+				<div ng-show="form.day.$error.required">Veuillez saisir un jour</div>
+			</div>
+			
+			<div class="col-md-1"><label>/</label></div>
+			
+			<div class="col-md-3">
+				<input 	id="month"
+					name="month"
+					value="regate.dateFinPicker.month" 
+					ng-model="regate.dateFinPicker.month"
+					ng-model-options="{ updateOn: 'blur' }"
+					required
+					type="number"
+					min="1"
+					max="12"
+				/>
+			</div>
+			<div class="row" ng-show="form.day.$dirty">
+				<div ng-show="form.day.$error.required">Veuillez saisir un mois</div>
+			</div>
+			
+			<div class="col-md-1"><label>/</label></div>
+			
+			<div class="col-md-3">
+				<input 	id="year"
+					name="year"
+					value="regate.dateFinPicker.year" 
+					ng-model="regate.dateFinPicker.year"
+					ng-model-options="{ updateOn: 'blur' }"
+					required
+					type="number"
+					min="1970"
+				/>		
+			</div>
+			<div class="row" ng-show="form.day.$dirty">
+				<div ng-show="form.day.$error.required">Veuillez saisir une année</div>
+			</div>
+			
+		</div>
+	</div>	      			
+</div>
+
+<div class="row">
+	<div class="row">
+		<div class="col-md-2">
+			<label>Heure * :</label>
+		</div>
+		<div class="col-md-8">
+			<div class="col-md-3">
+				<input 	id="hour"
+					name="hour"
+					value="regate.dateFinPicker.hour" 
+					ng-model="regate.dateFinPicker.hour"
+					ng-model-options="{ updateOn: 'blur' }"
+					required
+					type="number"
+					min="0"
+					max="23"
+				/>
+			</div>
+			<div class="row" ng-show="form.hour.$dirty">
+				<div ng-show="form.hour.$error.required">Veuillez saisir une heure</div>
+			</div>
+			
+			<div class="col-md-1"><label>H</label></div>
+			
+			<div class="col-md-3">
+				<input 	id="min"
+					name="min"
+					value="regate.dateFinPicker.min"
+					ng-model="regate.dateFinPicker.min"
+					ng-model-options="{ updateOn: 'blur' }"
+					required
+					type="number"
+					min="0"
+					max="59"
+				/>
+			</div>
+			<div class="row" ng-show="form.min.$dirty">
+				<div ng-show="form.min.$error.required">Veuillez saisir des minutes</div>
+			</div>
+						
+		</div>
+	</div>	      			
+</div>

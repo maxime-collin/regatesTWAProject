@@ -43,7 +43,7 @@
 
 		<script type="text/javascript" src="js/app.js"></script>
 		<script type="text/javascript" src="js/controllers/user.js"></script>
-		<script type="text/javascript" src="js/controllers/regate.js"></script>
+		<script type="text/javascript" src="js/controllers/regate2.js"></script>
 		<script type="text/javascript" src="js/controllers/course.js"></script>
 		<script type="text/javascript" src="js/controllers/bateau.js"></script>
 		
