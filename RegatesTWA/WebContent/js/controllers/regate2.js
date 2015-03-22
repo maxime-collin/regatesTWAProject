@@ -36,10 +36,10 @@ monAppControllers.controller('RegateController', [
     	                  {label : 'Mondiale', value : 'Mondiale'},
     	];    	
     	// le niveau selectionne dans le cas d'une modification
-    	/*$scope.selectedNiveau = {};
+    	$scope.selectedNiveau = {};
     	$scope.selectedNiveau.label = '';
     	$scope.selectedNiveau.value = '';
-    	*/
+    	
     	// liste des types a afficher dans le select
     	$scope.types = [ 
     	                 {label : 'Inter-Séries', value : 'InterSeries'},
@@ -165,12 +165,12 @@ monAppControllers.controller('RegateController', [
     	
     	$scope.addRegate = function() {
     		$scope.convertDate();
-    		$scope.niveau = $scope.selectedNiveau.value;
-    		$scope.type = $scope.selectedType.value;
+    		//$scope.niveau = $scope.selectedNiveau.value;
+    		//$scope.type = $scope.selectedType.value;
     		
     		console.log($scope.selectedNiveau.toSource() + ' titi');
 
-    		/*$http({
+    		$http({
     			method : 'POST',
     			url : 'enregistrerRegate.htm',
     			headers : { 'Content-Type' : 'application/json' },
@@ -182,7 +182,7 @@ monAppControllers.controller('RegateController', [
     						$location.path("/regates");
     					}
     				});
-    				*/
+    				
     	};
     	
     	// recupere la regate que l'on veut modifier
