@@ -59,7 +59,8 @@ public class Dao {
 	
 	public void supprimerUser(User user) {
 		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		if (!tx.isActive()) 
+			tx.begin();
 		User u = em.find(User.class, user.getNumeroLicence());
 		em.remove(u);
 		tx.commit();
@@ -69,7 +70,8 @@ public class Dao {
 		System.out.println("dao returnUser");
 
 		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		if (!tx.isActive()) 
+			tx.begin();
 		User u = em.find(User.class, id);
 		return u;
 	}
@@ -102,14 +104,16 @@ public class Dao {
 		System.out.println("dao returnCourse");
 
 		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		if (!tx.isActive()) 
+			tx.begin();
 		Course c = em.find(Course.class, idCourse);
 		return c;
 	}
 
 	public void supprimerCourse(Course c) {
 		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		if (!tx.isActive()) 
+			tx.begin();
 		Course course = em.find(Course.class, c.getId());
 		em.remove(course);
 		tx.commit();
@@ -143,7 +147,8 @@ public class Dao {
 		System.out.println("dao returnBateau");
 
 		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		if (!tx.isActive()) 
+			tx.begin();
 		Bateau b = em.find(Bateau.class, id);
 		return b;
 	}
@@ -162,7 +167,8 @@ public class Dao {
 
 	public void supprimerBateau(Bateau b) {
 		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		if (!tx.isActive()) 
+			tx.begin();
 		Bateau bateau = em.find(Bateau.class, b.getId());
 		em.remove(bateau);
 		tx.commit();
@@ -182,7 +188,8 @@ public class Dao {
 
 	public void supprimerRegate(Regate r) {
 		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		if (!tx.isActive()) 
+			tx.begin();
 		Regate regate = em.find(Regate.class, r.getId());
 		em.remove(regate);
 		tx.commit();
@@ -192,7 +199,8 @@ public class Dao {
 		System.out.println("dao returnRegate");
 
 		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		if (!tx.isActive()) 
+			tx.begin();
 		Regate r = em.find(Regate.class, id);
 		return r;
 	}
