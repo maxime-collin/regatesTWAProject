@@ -1,0 +1,26 @@
+<div id="visuCourses" class="row">
+	<table class="table table-striped">
+		<tbody>
+			<tr
+				class=""
+				onmouseover="this.className='info';"
+				onmouseout="this.className='';"
+			 	ng-repeat="course in listeCourses"
+			 	>
+			 	<td>
+			 		<a ng-click="redirectToUpdateCourse(regate, course)" class="btn btn-primary glyphicon glyphicon-pencil"></a>
+					<a ng-click="deleteCourseToRegate(course)" class="btn btn-danger glyphicon glyphicon-trash"></a>
+				</td>
+				<td>{{course.id}}</td>
+				<td>{{course.numero}}</td>
+				<td>{{course.dateDebut}}</td>
+				<td>{{course.coefficient}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<button class="btn btn-primary" ng-click="redirectToAddCourse(regate)">Ajouter une course</button>
+	</div>
+</div>
