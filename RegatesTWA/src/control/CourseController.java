@@ -68,17 +68,10 @@ public class CourseController {
 			@RequestBody @Valid Course course, BindingResult bres) {
 		System.out.println("supprimerCourse id = "+course.getId());
 		Resultat res = convertBindingResult(bres);
-	
-		Course c = new Course();
-		c.setDateDebut(course.getDateDebut());
-		c.setHeureDebut(course.getHeureDebut());
-		c.setDateFin(course.getDateFin());
-		c.setHeureFin(course.getHeureFin());
-		c.setCoefficient(course.getCoefficient());
-		
+			
 		if(res.getRes().equals("SUCCESS")) {
 			System.out.println("res sucess");
-			dao.supprimerCourse(c);
+			dao.supprimerCourse(course);
 		}
 		return res;
 	}
@@ -95,17 +88,10 @@ public class CourseController {
 				@RequestBody @Valid Course course, BindingResult bres) {
 			System.out.println("modifierCourse id = "+course.getId());
 			Resultat res = convertBindingResult(bres);
-		
-			Course c = new Course();
-			c.setDateDebut(course.getDateDebut());
-			c.setHeureDebut(course.getHeureDebut());
-			c.setDateFin(course.getDateFin());
-			c.setHeureFin(course.getHeureFin());
-			c.setCoefficient(course.getCoefficient());
-			
+					
 			if(res.getRes().equals("SUCCESS")) {
 				System.out.println("res sucess");
-				dao.modifiercourse(c);
+				dao.modifiercourse(course);
 			}
 			return res;
 		}

@@ -64,17 +64,10 @@ public class BateauController {
 			@RequestBody @Valid Bateau bateau, BindingResult bres) {
 		System.out.println("supprimerBateau nom = "+bateau.getNom());
 		Resultat res = convertBindingResult(bres);
-	
-		Bateau b = new Bateau();
-		b.setNumero(bateau.getNumero());
-		b.setNom(bateau.getNom());
-		b.setNationalite(bateau.getNationalite());
-		b.setType(bateau.getType());
-		b.setCapitaine(bateau.getCapitaine());
 		
 		if(res.getRes().equals("SUCCESS")) {
 			System.out.println("res sucess");
-			dao.supprimerBateau(b);
+			dao.supprimerBateau(bateau);
 		}
 		return res;
 	}
@@ -91,17 +84,10 @@ public class BateauController {
 				@RequestBody @Valid Bateau bateau, BindingResult bres) {
 			System.out.println("modifierBateau nom = "+bateau.getNom());
 			Resultat res = convertBindingResult(bres);
-		
-			Bateau b = new Bateau();
-			b.setNumero(bateau.getNumero());
-			b.setNom(bateau.getNom());
-			b.setNationalite(bateau.getNationalite());
-			b.setType(bateau.getType());
-			b.setCapitaine(bateau.getCapitaine());
-			
+
 			if(res.getRes().equals("SUCCESS")) {
 				System.out.println("res sucess");
-				dao.modifierBateau(b);
+				dao.modifierBateau(bateau);
 			}
 			return res;
 		}

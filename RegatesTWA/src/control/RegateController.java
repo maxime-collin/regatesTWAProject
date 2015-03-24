@@ -90,17 +90,7 @@ public class RegateController {
 		
 		System.out.println("supprimerRegate nom = "+regate.getNom());
 		Resultat res = convertBindingResult(bres);
-	
-		/*Regate r = new Regate();
-		r.setNom(regate.getNom());
-		r.setDescription(regate.getDescription());
-		r.setNiveau(regate.getNiveau());
-		r.setType(regate.getType());
-		r.setDateDebut(regate.getDateDebut());
-		r.setHeureDebut(regate.getHeureDebut());
-		r.setDateFin(regate.getDateFin());
-		r.setHeureFin(regate.getHeureFin());*/
-		
+			
 		if(res.getRes().equals("SUCCESS")) {
 			System.out.println("res sucess");
 			dao.supprimerRegate(regate);
@@ -114,27 +104,10 @@ public class RegateController {
 			@RequestParam("regate") Regate regate, @RequestParam("bateau") Bateau bateau, BindingResult bres) {
 		System.out.println("supprimerBateauToRegate nom = "+bateau.getNom());
 		Resultat res = convertBindingResult(bres);
-	
-		Regate r = new Regate();
-		r.setNom(regate.getNom());
-		r.setDescription(regate.getDescription());
-		r.setNiveau(regate.getNiveau());
-		r.setType(regate.getType());
-		r.setDateDebut(regate.getDateDebut());
-		r.setHeureDebut(regate.getHeureDebut());
-		r.setDateFin(regate.getDateFin());
-		r.setHeureFin(regate.getHeureFin());
-		
-		Bateau b = new Bateau();
-		b.setNumero(bateau.getNumero());
-		b.setNom(bateau.getNom());
-		b.setNationalite(bateau.getNationalite());
-		b.setType(bateau.getType());
-		b.setCapitaine(bateau.getCapitaine());
-		
+			
 		if(res.getRes().equals("SUCCESS")) {
 			System.out.println("res sucess");
-			dao.supprimerBateauToRegate(r, b);
+			dao.supprimerBateauToRegate(regate, bateau);
 		}
 		return res;
 	}
