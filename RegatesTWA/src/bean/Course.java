@@ -27,6 +27,9 @@ public class Course {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	private Integer numero;
+
+	
 	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
 	
@@ -55,6 +58,14 @@ public class Course {
 	@Column(name = "id")
 	public Integer getId() {
 		return id;
+	}
+
+	@Column(name = "numero")
+	public Integer getNumero() {
+		return numero;
+	}
+	public void setNumero(Integer numero) {
+		this.numero = numero;
 	}
 
 	@Column(name = "datedebut")

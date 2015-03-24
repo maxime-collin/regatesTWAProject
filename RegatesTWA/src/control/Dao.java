@@ -88,13 +88,15 @@ public class Dao {
 		System.out.println("dao commit");
 	}
 
-	public void enregistrerCourse(Course course) {
+	public void enregistrerCourse(Course course, int regateId) {
 		System.out.println("dao enregistrerCourse");
-		System.out.println("dao course id : "+course.getId());
+		System.out.println("dao course id : "+course.getNumero());
 		EntityTransaction tx = em.getTransaction();
 		if(!tx.isActive()){
 			tx.begin();
 		}
+		Regate regate = returnRegate(regateId);
+		course.setRegate(regate);
 		em.persist(course);
 		tx.commit();
 		System.out.println("dao commit");		

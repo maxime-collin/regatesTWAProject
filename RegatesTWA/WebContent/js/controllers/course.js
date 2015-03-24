@@ -3,29 +3,57 @@ monAppControllers.controller('CourseController', [
 		
 		$scope.course = {};
 		$scope.course.id = "";
+		$scope.course.numero = 0;
 		$scope.course.coefficient = 0;
-		
-		$scope.course.dateDebut = {};
-		$scope.course.dateDebut.day = 0;
-		$scope.course.dateDebut.month = 0;
-		$scope.course.dateDebut.year = 0;
-		$scope.course.dateDebut.hour = 0;
-		$scope.course.dateDebut.min = 0;
-		
-		$scope.course.dateFin = {};
-		$scope.course.dateFin.day = 0;
-		$scope.course.dateFin.month = 0;
-		$scope.course.dateFin.year = 0;
-		$scope.course.dateFin.hour = 0;
-		$scope.course.dateFin.min = 0;
+    	$scope.course.dateDebut = new Date();
+    	$scope.course.heureDebut = new Date();
+    	$scope.course.dateFin = new Date();
+    	$scope.course.heureFin = new Date();
+    	
+    	$scope.course.dateDebutPicker = {};
+    	$scope.course.dateDebutPicker.day = 1;
+    	$scope.course.dateDebutPicker.month = 1;
+    	$scope.course.dateDebutPicker.year = 2000;
+    	$scope.course.dateDebutPicker.hour = 1;
+    	$scope.course.dateDebutPicker.min = 1;
+    	
+    	$scope.course.dateFinPicker = {};
+    	$scope.course.dateFinPicker.day = 1;
+    	$scope.course.dateFinPicker.month = 1;
+    	$scope.course.dateFinPicker.year = 2000;
+    	$scope.course.dateFinPicker.hour = 1;
+    	$scope.course.dateFinPicker.min = 1;
 
 		
+		$scope.convertDate = function() {
+        	var dayDebut = $scope.course.dateDebutPicker.day;
+        	var monthDebut = $scope.course.dateDebutPicker.month;
+        	var yearDebut = $scope.course.dateDebutPicker.year;
+        	var hourDebut = $scope.course.dateDebutPicker.hour;
+        	var minDebut = $scope.course.dateDebutPicker.min;
+    		
+    		$scope.course.dateDebut = new Date(yearDebut, monthDebut, dayDebut);
+    		$scope.course.heureDebut = new Date(yearDebut, monthDebut, dayDebut, hourDebut, minDebut);
+    		
+    		
+        	var dayFin = $scope.course.dateFinPicker.day;
+        	var monthFin = $scope.course.dateFinPicker.month;
+        	var yearFin = $scope.course.dateFinPicker.year;
+        	var hourFin = $scope.course.dateFinPicker.hour;
+        	var minFin = $scope.course.dateFinPicker.min;
+    		
+    		$scope.course.dateFin = new Date(yearFin, monthFin, dayFin);
+    		$scope.course.heureFin = new Date(yearFin, monthFin, dayFin, hourFin, minFin);
+    	};
+		
 		$scope.addCourse = function (){
+    		$scope.convertDate();
+			
 			$http({
 				method: 'POST',
-				url: 'enregistrerCourse.htm',
+				url: $routeParams.regateId + '/enregistrerCourse.htm',
 				headers: {'Content-Type': 'application/json'},
-				data:  $scope.course
+				data: $scope.course
 			}).success(function (data){
 				$scope.erreurs = data;
 				if(data.res == "SUCCESS"){

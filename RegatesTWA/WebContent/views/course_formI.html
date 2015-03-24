@@ -1,5 +1,26 @@
 <!-- $dirty	True if course has already interacted with the form. -->
-<div id="date" ng-include="'views/form_dateC.html'"></div>
+<div class="row">
+	<div class="row">
+		<div class="col-md-2">
+			<label>numero * :</label>
+		</div>
+		<div class="col-md-8"><div class="col-md-3">
+			<input 	id="numero"
+						name="numero"
+						value="course.numero"
+						ng-model="course.numero"
+						ng-model-options="{ updateOn: 'blur' }"
+						required
+						type="number"
+			/>
+		</div></div>
+	</div>
+	<div class="row" ng-show="form.numero.$dirty">
+		<div ng-show="form.numero.$error.required">Veuillez saisir un numero de course</div>
+	</div>
+</div>
+
+<div id="date" ng-include="'views/course_formDate.html'"></div>
 
 <div class="row">
 	<div class="row">

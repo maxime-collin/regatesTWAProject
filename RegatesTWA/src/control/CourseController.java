@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,13 +42,14 @@ public class CourseController {
 		return "enregistrerCourse";
 	}
 	
-	@RequestMapping(value="/enregistrerCourse",method=RequestMethod.POST)
+	@RequestMapping(value="{regateId}/enregistrerCourse",method=RequestMethod.POST)
 	public @ResponseBody Resultat enregistrerUser(
-			@RequestBody @Valid Course course, BindingResult bres) {
-		System.out.println("enregistrerCourse is = "+course.getId());
+			@RequestBody @Valid Course course, @PathVariable("regateId") int regateId, BindingResult bres) {
+		System.out.println("enregistrerCourse is = "+course.getNumero());
 		Resultat res = convertBindingResult(bres);
 	
 		Course c = new Course();
+		c.setNumero(course.getNumero());
 		c.setDateDebut(course.getDateDebut());
 		c.setHeureDebut(course.getHeureDebut());
 		c.setDateFin(course.getDateFin());
@@ -56,7 +58,7 @@ public class CourseController {
 		
 		if(res.getRes().equals("SUCCESS")) {
 			System.out.println("res sucess");
-			dao.enregistrerCourse(course);
+			dao.enregistrerCourse(course, regateId);
 		}
 		return res;
 	}
