@@ -16,9 +16,29 @@
 		</div>
 	</div>
 	<div class="row" ng-show="form.numero.$dirty">
-		<div ng-show="form.numeor.$error.required">Veuillez saisir un numéro</div>
+		<div ng-show="form.numero.$error.required">Veuillez saisir un numéro</div>
+	</div>	      			
+</div>
+
+<div class="row">
+	<div class="row">
+		<div class="col-md-3">
+			<label>Nom * :</label>
+		</div>
+		<div class="col-md-7">
+			<input 	id="nom"
+				name="nom"
+				value="bateau.nom" 
+				ng-model="bateau.nom"
+				ng-model-options="{ updateOn: 'blur' }"
+				required
+				type="text"
+			/>
+		</div>
 	</div>
-	      			
+	<div class="row" ng-show="form.nom.$dirty">
+		<div ng-show="form.nom.$error.required">Veuillez saisir un numéro</div>
+	</div>	      			
 </div>
 
 <div class="row">
@@ -29,7 +49,7 @@
 		<div class="col-md-7">
 			<select 	id="type"
 						name="type"
-						ng-model="selectedType" 
+						ng-model="$parents.selectedType" 
 						ng-model-options="{ updateOn: 'blur' }"
 						ng-options="type as type.label for type in types"
 						required
@@ -50,7 +70,7 @@
 		<div class="col-md-7">
 			<select 	id="nationalite"
 						name="nationalite"
-						ng-model="selectedNationalite" 
+						ng-model="$parents.selectedNationalite" 
 						ng-model-options="{ updateOn: 'blur' }"
 						ng-options="nationalite as nationalite.label for nationalite in nationalites"
 						required
@@ -67,17 +87,22 @@
 		<div class="col-md-3">
 			<label>Equipage : *</label>
 		</div>
-		<div class="col-md-7">
-			<multi-select	ng-model="bateau.equipage"
-							available="users"
-							selected-label="Equipage"
-							available-label="Equipier disponible"
-							display-attr="userName"
-			></multi-select>
+		<div class="col-md-3 equipage">
+			<div ng-repeat="equipier in listEquipiers" class="row">
+				<label>
+					<input			type="checkbox"
+									name="selectedEquipiers[]"
+									value="{{equpier.numeroLicence}}"
+									ng-model="equipier.selected"
+		
+					/>
+					{{equipier.prenom}} {{equipier.nom}}
+				</label>
+			</div>
 		</div>
 	</div>
-	<div class="row" ng-show="form.equipage.$dirty"></div>
 </div>
+
 
 <div class="row">
 	<input type="submit" class="btn btn-primary col-md-offset-3" value="Ajouter" />
