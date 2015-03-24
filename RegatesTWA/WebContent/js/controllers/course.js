@@ -10,37 +10,37 @@ monAppControllers.controller('CourseController', [
     	$scope.course.dateFin = new Date();
     	$scope.course.heureFin = new Date();
     	
-    	$scope.course.dateDebutPicker = {};
-    	$scope.course.dateDebutPicker.day = 1;
-    	$scope.course.dateDebutPicker.month = 1;
-    	$scope.course.dateDebutPicker.year = 2000;
-    	$scope.course.dateDebutPicker.hour = 1;
-    	$scope.course.dateDebutPicker.min = 1;
+    	$scope.dateDebutPicker = {};
+    	$scope.dateDebutPicker.day = 1;
+    	$scope.dateDebutPicker.month = 1;
+    	$scope.dateDebutPicker.year = 2000;
+    	$scope.dateDebutPicker.hour = 1;
+    	$scope.dateDebutPicker.min = 1;
     	
-    	$scope.course.dateFinPicker = {};
-    	$scope.course.dateFinPicker.day = 1;
-    	$scope.course.dateFinPicker.month = 1;
-    	$scope.course.dateFinPicker.year = 2000;
-    	$scope.course.dateFinPicker.hour = 1;
-    	$scope.course.dateFinPicker.min = 1;
+    	$scope.dateFinPicker = {};
+    	$scope.dateFinPicker.day = 1;
+    	$scope.dateFinPicker.month = 1;
+    	$scope.dateFinPicker.year = 2000;
+    	$scope.dateFinPicker.hour = 1;
+    	$scope.dateFinPicker.min = 1;
 
 		
 		$scope.convertDate = function() {
-        	var dayDebut = $scope.course.dateDebutPicker.day;
-        	var monthDebut = $scope.course.dateDebutPicker.month;
-        	var yearDebut = $scope.course.dateDebutPicker.year;
-        	var hourDebut = $scope.course.dateDebutPicker.hour;
-        	var minDebut = $scope.course.dateDebutPicker.min;
+        	var dayDebut = $scope.dateDebutPicker.day;
+        	var monthDebut = $scope.dateDebutPicker.month;
+        	var yearDebut = $scope.dateDebutPicker.year;
+        	var hourDebut = $scope.dateDebutPicker.hour;
+        	var minDebut = $scope.dateDebutPicker.min;
     		
     		$scope.course.dateDebut = new Date(yearDebut, monthDebut, dayDebut);
     		$scope.course.heureDebut = new Date(yearDebut, monthDebut, dayDebut, hourDebut, minDebut);
     		
     		
-        	var dayFin = $scope.course.dateFinPicker.day;
-        	var monthFin = $scope.course.dateFinPicker.month;
-        	var yearFin = $scope.course.dateFinPicker.year;
-        	var hourFin = $scope.course.dateFinPicker.hour;
-        	var minFin = $scope.course.dateFinPicker.min;
+        	var dayFin = $scope.dateFinPicker.day;
+        	var monthFin = $scope.dateFinPicker.month;
+        	var yearFin = $scope.dateFinPicker.year;
+        	var hourFin = $scope.dateFinPicker.hour;
+        	var minFin = $scope.dateFinPicker.min;
     		
     		$scope.course.dateFin = new Date(yearFin, monthFin, dayFin);
     		$scope.course.heureFin = new Date(yearFin, monthFin, dayFin, hourFin, minFin);
