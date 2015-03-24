@@ -12,19 +12,19 @@ monAppControllers.controller('RegateController', [
     	$scope.regate.dateFin = new Date();
     	$scope.regate.heureFin = new Date();
     	
-    	$scope.regate.dateDebutPicker = {};
-    	$scope.regate.dateDebutPicker.day = 1;
-    	$scope.regate.dateDebutPicker.month = 1;
-    	$scope.regate.dateDebutPicker.year = 2000;
-    	$scope.regate.dateDebutPicker.hour = 1;
-    	$scope.regate.dateDebutPicker.min = 1;
+    	$scope.dateDebutPicker = {};
+    	$scope.dateDebutPicker.day = 1;
+    	$scope.dateDebutPicker.month = 1;
+    	$scope.dateDebutPicker.year = 2000;
+    	$scope.dateDebutPicker.hour = 1;
+    	$scope.dateDebutPicker.min = 1;
     	
-    	$scope.regate.dateFinPicker = {};
-    	$scope.regate.dateFinPicker.day = 1;
-    	$scope.regate.dateFinPicker.month = 1;
-    	$scope.regate.dateFinPicker.year = 2000;
-    	$scope.regate.dateFinPicker.hour = 1;
-    	$scope.regate.dateFinPicker.min = 1;
+    	$scope.dateFinPicker = {};
+    	$scope.dateFinPicker.day = 1;
+    	$scope.dateFinPicker.month = 1;
+    	$scope.dateFinPicker.year = 2000;
+    	$scope.dateFinPicker.hour = 1;
+    	$scope.dateFinPicker.min = 1;
     	
     	$scope.regate.inscrBateaux = [];
     	
@@ -36,7 +36,9 @@ monAppControllers.controller('RegateController', [
     	                  {label : 'Mondiale', value : 'Mondiale'},
     	];    	
     	// le niveau selectionne dans le cas d'une modification
-    	$scope.selectedNiveau = "";
+    	$scope.selectedNiveau = {};
+    	$scope.selectedNiveau.value = "";
+    	$scope.selectedNiveau.label = "";
     	    	
     	// liste des types a afficher dans le select
     	$scope.types = [ 
@@ -51,7 +53,9 @@ monAppControllers.controller('RegateController', [
     	                 {label : 'Sprinto', value : 'Sprinto'},
     	];
     	// le type selectionne dans le cas d'une modification
-    	$scope.selectedType = "";
+    	$scope.selectedType = {};
+    	$scope.selectedType.value = "";
+    	$scope.selectedType.label = "";
     	
     	// A CHANGER
     	$scope.$watch('$viewContentLoaded', function() {
@@ -152,21 +156,21 @@ monAppControllers.controller('RegateController', [
     	};
     	
     	$scope.convertDate = function() {
-        	var dayDebut = $scope.regate.dateDebutPicker.day;
-        	var monthDebut = $scope.regate.dateDebutPicker.month;
-        	var yearDebut = $scope.regate.dateDebutPicker.year;
-        	var hourDebut = $scope.regate.dateDebutPicker.hour;
-        	var minDebut = $scope.regate.dateDebutPicker.min;
+        	var dayDebut = $scope.dateDebutPicker.day;
+        	var monthDebut = $scope.dateDebutPicker.month;
+        	var yearDebut = $scope.dateDebutPicker.year;
+        	var hourDebut = $scope.dateDebutPicker.hour;
+        	var minDebut = $scope.dateDebutPicker.min;
     		
     		$scope.regate.dateDebut = new Date(yearDebut, monthDebut, dayDebut);
     		$scope.regate.heureDebut = new Date(yearDebut, monthDebut, dayDebut, hourDebut, minDebut);
     		
     		
-        	var dayFin = $scope.regate.dateFinPicker.day;
-        	var monthFin = $scope.regate.dateFinPicker.month;
-        	var yearFin = $scope.regate.dateFinPicker.year;
-        	var hourFin = $scope.regate.dateFinPicker.hour;
-        	var minFin = $scope.regate.dateFinPicker.min;
+        	var dayFin = $scope.dateFinPicker.day;
+        	var monthFin = $scope.dateFinPicker.month;
+        	var yearFin = $scope.dateFinPicker.year;
+        	var hourFin = $scope.dateFinPicker.hour;
+        	var minFin = $scope.dateFinPicker.min;
     		
     		$scope.regate.dateFin = new Date(yearFin, monthFin, dayFin);
     		$scope.regate.heureFin = new Date(yearFin, monthFin, dayFin, hourFin, minFin);
@@ -174,9 +178,9 @@ monAppControllers.controller('RegateController', [
     	
     	$scope.addRegate = function() {
     		$scope.convertDate();
-    		$scope.regate.niveau = $scope.selectedNiveau;
-    		$scope.regate.type = $scope.selectedType;
-
+    		$scope.regate.niveau = $scope.selectedNiveau.value;
+    		$scope.regate.type = $scope.selectedType.value;
+    		
     		$http({
     			method : 'POST',
     			url : 'enregistrerRegate.htm',
@@ -193,7 +197,7 @@ monAppControllers.controller('RegateController', [
     	};
     	
     	// recupere la regate que l'on veut modifier
-    	/*$scope.initUpdate = function() {
+    	$scope.initUpdate = function() {
     		$http({
     			method : 'GET',
     			url : 'modifierRegate.htm',
@@ -204,17 +208,17 @@ monAppControllers.controller('RegateController', [
     					
     					// trouve le niveau selectionne
     					for (var i = 0; i < $scope.niveaux.length; i++) {
-    						if ($scope.niveaux[i].label.valueOf() == $scope.regate.niveau.valueOf())
+    						if ($scope.niveaux[i].value.valueOf() == $scope.regate.niveau.valueOf())
     							$scope.selectedNiveau = $scope.niveaux[i];
     					}
     					
     					// trouve le type selectionne
     					for (var i = 0; i < $scope.types.length; i++) {
-    						if ($scope.types[i].label.valueOf() == $scope.regate.type.valueOf())
+    						if ($scope.types[i].value.valueOf() == $scope.regate.type.valueOf())
     							$scope.selectedType = $scope.types[i];
     					}
     				});
-    	};*/
+    	};
     	
     	$scope.updateRegate = function() {
     		$http({

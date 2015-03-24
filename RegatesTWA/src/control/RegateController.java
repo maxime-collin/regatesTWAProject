@@ -87,10 +87,11 @@ public class RegateController {
 	@RequestMapping(value="/supprimerRegate",method=RequestMethod.POST)
 	public @ResponseBody Resultat supprimerRegate(
 			@RequestBody @Valid Regate regate, BindingResult bres) {
+		
 		System.out.println("supprimerRegate nom = "+regate.getNom());
 		Resultat res = convertBindingResult(bres);
 	
-		Regate r = new Regate();
+		/*Regate r = new Regate();
 		r.setNom(regate.getNom());
 		r.setDescription(regate.getDescription());
 		r.setNiveau(regate.getNiveau());
@@ -98,11 +99,11 @@ public class RegateController {
 		r.setDateDebut(regate.getDateDebut());
 		r.setHeureDebut(regate.getHeureDebut());
 		r.setDateFin(regate.getDateFin());
-		r.setHeureFin(regate.getHeureFin());
+		r.setHeureFin(regate.getHeureFin());*/
 		
 		if(res.getRes().equals("SUCCESS")) {
 			System.out.println("res sucess");
-			dao.supprimerRegate(r);
+			dao.supprimerRegate(regate);
 		}
 		return res;
 	}
@@ -150,20 +151,10 @@ public class RegateController {
 				@RequestBody @Valid Regate regate, BindingResult bres) {
 			System.out.println("modifierRegate nom = "+regate.getNom());
 			Resultat res = convertBindingResult(bres);
-		
-			Regate r = new Regate();
-			r.setNom(regate.getNom());
-			r.setDescription(regate.getDescription());
-			r.setNiveau(regate.getNiveau());
-			r.setType(regate.getType());
-			r.setDateDebut(regate.getDateDebut());
-			r.setHeureDebut(regate.getHeureDebut());
-			r.setDateFin(regate.getDateFin());
-			r.setHeureFin(regate.getHeureFin());
 			
 			if(res.getRes().equals("SUCCESS")) {
 				System.out.println("res sucess");
-				dao.modifierRegate(r);
+				dao.modifierRegate(regate);
 			}
 			return res;
 		}

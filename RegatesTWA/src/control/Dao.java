@@ -209,7 +209,6 @@ public class Dao {
 
 	public void modifierRegate(Regate r) {
 		System.out.println("dao modifierRegate");
-		System.out.println("dao Bateau nom : "+r.getNom());
 		EntityTransaction tx = em.getTransaction();
 		if(!tx.isActive()){
 			tx.begin();
