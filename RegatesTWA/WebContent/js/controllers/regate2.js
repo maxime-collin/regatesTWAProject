@@ -28,7 +28,7 @@ monAppControllers.controller('RegateController', [
     	
     	$scope.regate.inscrBateaux = [];
     	
-    	// liste des niveaux a afficher dans le select
+    	// liste des niveaux a afficher dans le select    	
     	$scope.niveaux = [
     	                  {label : 'Départementale', value : 'Departementale' },
     	                  {label : 'Ligue', value : 'Ligue'},
@@ -36,10 +36,8 @@ monAppControllers.controller('RegateController', [
     	                  {label : 'Mondiale', value : 'Mondiale'},
     	];    	
     	// le niveau selectionne dans le cas d'une modification
-    	$scope.selectedNiveau = {};
-    	$scope.selectedNiveau.label = '';
-    	$scope.selectedNiveau.value = '';
-    	
+    	$scope.selectedNiveau = "";
+    	    	
     	// liste des types a afficher dans le select
     	$scope.types = [ 
     	                 {label : 'Inter-Séries', value : 'InterSeries'},
@@ -53,7 +51,7 @@ monAppControllers.controller('RegateController', [
     	                 {label : 'Sprinto', value : 'Sprinto'},
     	];
     	// le type selectionne dans le cas d'une modification
-    	$scope.selectedType = {};
+    	$scope.selectedType = "";
     	
     	// A CHANGER
     	$scope.$watch('$viewContentLoaded', function() {
@@ -165,10 +163,8 @@ monAppControllers.controller('RegateController', [
     	
     	$scope.addRegate = function() {
     		$scope.convertDate();
-    		//$scope.niveau = $scope.selectedNiveau.value;
-    		//$scope.type = $scope.selectedType.value;
-    		
-    		console.log($scope.selectedNiveau.toSource() + ' titi');
+    		$scope.regate.niveau = $scope.selectedNiveau;
+    		$scope.regate.type = $scope.selectedType;
 
     		$http({
     			method : 'POST',
@@ -182,11 +178,11 @@ monAppControllers.controller('RegateController', [
     						$location.path("/regates");
     					}
     				});
-    				
+    		
     	};
     	
     	// recupere la regate que l'on veut modifier
-    	$scope.initUpdate = function() {
+    	/*$scope.initUpdate = function() {
     		$http({
     			method : 'GET',
     			url : 'modifierRegate.htm',
@@ -207,7 +203,7 @@ monAppControllers.controller('RegateController', [
     							$scope.selectedType = $scope.types[i];
     					}
     				});
-    	};
+    	};*/
     	
     	$scope.updateRegate = function() {
     		$http({
