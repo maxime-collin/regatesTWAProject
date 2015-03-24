@@ -68,6 +68,15 @@ monAppControllers.controller('RegateController', [
     	$scope.initVisu = function() {
     		$http({
     			method : 'GET',
+    			url : 'modifierRegate.htm',
+    			headers : { 'Content-Type' : 'application/json' },
+    			params : { id : $routeParams.regateId }
+    		}).success(function(data) {
+    				$scope.regate = data;
+    		});
+    		
+    		$http({
+    			method : 'GET',
     			url : 'listerRegateCourses.htm',
     			headers : { 'Content-Type' : 'application/json' },
     			params : { id : $routeParams.regateId }
@@ -122,22 +131,24 @@ monAppControllers.controller('RegateController', [
     		$location.path("/regate/" + regate.id);
     	};
     	
-    	$scope.redirectToInscription = function() {
-    		$location.path("/regate/" + regate.id
-    				+ "/inscription");
+    	$scope.redirectToInscription = function(regate) {
+    		$location.path("/regate/" + regate.id + "/inscription");
     	};
     	
     	$scope.redirectToAddRegate = function() {
     		$location.path("/new-regate");
     	};
+    	
     	$scope.redirectToUpdateRegate = function(regate) {
     		$location.path("/update-regate/" + regate.id);
     	};
     	
-    	$scope.redirectToUpdateCourse = function(regate,
-    			course) {
-    		$location.path("/update-course/" + regate.id
-    				+ "/" + course.id);
+    	$scope.redirectToAddCourse = function(regate, course) {
+    		$location.path("/new-course/" + regate.id);
+    	};
+    	
+    	$scope.redirectToUpdateCourse = function(regate, course) {
+    		$location.path("/update-course/" + regate.id + "/" + course.id);
     	};
     	
     	$scope.convertDate = function() {

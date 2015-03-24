@@ -3,19 +3,22 @@
 <div ng_init="initVisu()">
 	<div id="detailRegate" class="row">
 		<div class="row">
-			<div class="col-md-3">Date de début :</div>
-			<div class="col-md-3">{{regate.dateDebut}}</div>
-			<div class="col-md-3">Date de fin :</div>
-			<div class="col-md-3">{{regate.dateFin}}</div>
+			<div class="col-md-2"><b>Date de début :</b></div>
+			<div class="col-md-1">{{regate.dateDebut}}</div>
+			<div class="col-md-1"><b>Niveau :</b></div>
+			<div class="col-md-1">{{regate.niveau}}</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3">Niveau :</div>
-			<div class="col-md-3">{{regate.niveau}}</div>
-			<div class="col-md-3">Type :</div>
-			<div class="col-md-3">{{regate.type}}</div>
+			<div class="col-md-2"><b>Date de fin :</b></div>
+			<div class="col-md-1">{{regate.dateFin}}</div>
+			<div class="col-md-1"><b>Type :</b></div>
+			<div class="col-md-1">{{regate.type}}</div>
 		</div>
 		<div class="row">
-			<div class="col-md-9">{{regate.description}}</div>
+			<div class="col-md-2"><b>Description :</b></div>
+		</div>
+		<div class="row">
+			<div class="col-md-9">{{regate.description}}</div>		
 		</div>
 		<div class="row">
 			<a ng-click="redirectToUpdateRegate(regate)" class="btn btn-primary glyphicon glyphicon-pencil"></a>
@@ -25,7 +28,7 @@
 	
 	<div class="row">
 		<h2>Courses</h2>
-		<div id="courses" ng-include="'views/regate_visuCourses.html'"></div>
+		<div id="courses" ng-include="'views/regate_visuCoursesA.html'"></div>
 	</div>
 
 	<div class="row">
@@ -35,7 +38,7 @@
 	
 	<div class="row">
 		<div class="col-md-3">
-			<button class="btn btn-primary" ng-click="redirectToInscription()">Inscription</button>
+			<button class="btn btn-primary" ng-click="redirectToInscription(regate)">Inscription</button>
 		</div>
 	</div>
 	
