@@ -1,0 +1,40 @@
+<div id="visuBateaux" class="row">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Actions</th>
+				<th>Nationalité</th>
+				<th>Numéro</th>
+				<th>Nom</th>
+				<th>Type</th>
+				<th>Equipage</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr
+				class=""
+				onmouseover="this.className='info';"
+				onmouseout="this.className='';"
+			 	ng-repeat="bateau in regate.bateaux"
+			 	>
+			 	<td>
+					<a ng-click="deleteBateauToRegate(regate, bateau)" class="btn btn-danger glyphicon glyphicon-trash"></a>
+				</td>
+				<td>{{bateau.nationalite}}</td>
+				<td>{{bateau.numero}}</td>
+				<td>{{bateau.nom}}</td>
+				<td>{{bateau.type}}</td>
+				<td><ul>
+					<li
+						class=""
+						onmouseover="this.className='info';"
+						onmouseout="this.className='';"
+				 		ng-repeat="equipier in bateau.equipage"
+				 	>
+				 		<p ng-click="openEquipierURL(equipier)">{{equipier.prenom}} {{equipier.nom}}</p>
+					</li>
+				</ul></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

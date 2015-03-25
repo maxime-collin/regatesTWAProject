@@ -58,7 +58,7 @@ monAppControllers.controller('RegateController', [
     	$scope.selectedType.label = "";
     	
     	// A CHANGER
-    	$scope.$watch('$viewContentLoaded', function() {
+    	$scope.initList = function() {
     		$http({
     			method : 'GET',
     			url : 'listerRegates.htm',
@@ -66,7 +66,7 @@ monAppControllers.controller('RegateController', [
     		}).success(function(data) {
     			$scope.listeRegates = data;
     		});
-    	});
+    	};
     	
     	// recupere la liste des courses et des bateaux de la regate
     	$scope.initVisu = function() {
@@ -77,8 +77,9 @@ monAppControllers.controller('RegateController', [
     			params : { id : $routeParams.regateId }
     		}).success(function(data) {
     				$scope.regate = data;
+    				console.log($scope.regate.toSource());
     		});
-    		
+    		    		
     		$http({
     			method : 'GET',
     			url : 'listerRegateCourses.htm',
@@ -88,15 +89,8 @@ monAppControllers.controller('RegateController', [
     			$scope.listeCourses = data;
     		});
     		
-    		$http({
-    			method : 'GET',
-    			url : 'listerRegateBateaux.htm',
-    			headers : { 'Content-Type' : 'application/json' },
-    			params : { id : $routeParams.regateId }
-    		}).success(function(data) {
-    			$scope.listeBateaux = data;
-    		});
     	};
+    	
     	
     	// recupere la liste des bateaux de l'utilisateur pour les afficher dans le select
     	$scope.initInscription = function() {
