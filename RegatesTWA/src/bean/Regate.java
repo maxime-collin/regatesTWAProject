@@ -1,5 +1,6 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table( name = "r_regate" )
-public class Regate {
+public class Regate implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -61,7 +62,7 @@ public class Regate {
     @ManyToMany(cascade={CascadeType.PERSIST})
     @JoinTable(name="r_inscriptionRegate",joinColumns = @JoinColumn(name = "regate"), inverseJoinColumns = @JoinColumn(name = "bateau"))
     @JsonManagedReference
-	private Set<Bateau> bateaux = new HashSet<Bateau>();
+	private Set<Bateau> bateauxInscrits = new HashSet<Bateau>();
 	
 	
 	public Regate(){
@@ -129,11 +130,11 @@ public class Regate {
 		this.heureFin = heureFin;
 	}
 
-	public Set<Bateau> getBateaux() {
-		return bateaux;
+	public Set<Bateau> getBateauxInscrits() {
+		return bateauxInscrits;
 	}
-	public void setBateaux(Set<Bateau> bateaux) {
-		this.bateaux = bateaux;
+	public void setBateauxInscrits(Set<Bateau> bateauxInscrits) {
+		this.bateauxInscrits = bateauxInscrits;
 	}
 
 }

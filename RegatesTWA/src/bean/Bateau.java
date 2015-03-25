@@ -1,5 +1,6 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table( name = "r_bateau" )
-public class Bateau {
+public class Bateau implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -44,7 +45,7 @@ public class Bateau {
     @JsonManagedReference
 	private Set<User> equipage = new HashSet<User>();
 	
-    @ManyToMany(mappedBy="bateaux")
+    @ManyToMany(mappedBy="bateauxInscrits")
     @JsonBackReference
 	private Set<Regate> regates = new HashSet<Regate>();
 	

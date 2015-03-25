@@ -193,8 +193,8 @@ public class Dao {
 		if (!tx.isActive()) 
 			tx.begin();
 		Regate r = em.find(Regate.class, id);
-		System.out.println("DAO returnRegate -> size r.bateaux : " + r.getBateaux().size());
-		for (Bateau bateau : r.getBateaux())
+		System.out.println("DAO returnRegate -> size r.bateaux : " + r.getBateauxInscrits().size());
+		for (Bateau bateau : r.getBateauxInscrits())
 			System.out.println("DAO returnRegate -> bateau.nom : " + bateau.getNom());
 		
 		return r;

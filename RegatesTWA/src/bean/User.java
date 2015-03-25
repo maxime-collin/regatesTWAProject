@@ -1,5 +1,6 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table( name = "r_equipier" )
-public class User {
+public class User implements Serializable {
 	
 	@Id
 	@Column(name = "numeroLicence")
