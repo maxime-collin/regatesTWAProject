@@ -32,9 +32,9 @@ public class Dao {
 		System.out.println("dao enregistrerUser");
 		System.out.println("dao user nom : "+u.getNom());
 		EntityTransaction tx = em.getTransaction();
-		if(!tx.isActive()){
+		if(!tx.isActive())
 			tx.begin();
-		}
+		
 		em.persist(u);
 		tx.commit();
 		System.out.println("dao commit");
@@ -50,6 +50,7 @@ public class Dao {
 		EntityTransaction tx = em.getTransaction();
 		if (!tx.isActive()) 
 			tx.begin();
+		
 		User u = em.find(User.class, user.getNumeroLicence());
 		em.remove(u);
 		tx.commit();
@@ -61,6 +62,7 @@ public class Dao {
 		EntityTransaction tx = em.getTransaction();
 		if (!tx.isActive()) 
 			tx.begin();
+		
 		User u = em.find(User.class, id);
 		return u;
 	}
@@ -69,9 +71,9 @@ public class Dao {
 		System.out.println("dao modifierUser");
 		System.out.println("dao user nom : "+u.getNom());
 		EntityTransaction tx = em.getTransaction();
-		if(!tx.isActive()){
+		if(!tx.isActive())
 			tx.begin();
-		}
+		
 		em.merge(u);
 		tx.commit();
 		System.out.println("dao commit");
@@ -81,11 +83,12 @@ public class Dao {
 		System.out.println("dao enregistrerCourse");
 		System.out.println("dao course id : "+course.getNumero());
 		EntityTransaction tx = em.getTransaction();
-		if(!tx.isActive()){
+		if(!tx.isActive())
 			tx.begin();
-		}
+		
 		Regate regate = returnRegate(regateId);
 		course.setRegate(regate);
+		
 		em.persist(course);
 		tx.commit();
 		System.out.println("dao commit");		
@@ -97,6 +100,7 @@ public class Dao {
 		EntityTransaction tx = em.getTransaction();
 		if (!tx.isActive()) 
 			tx.begin();
+		
 		Course c = em.find(Course.class, idCourse);
 		return c;
 	}
@@ -105,6 +109,7 @@ public class Dao {
 		EntityTransaction tx = em.getTransaction();
 		if (!tx.isActive()) 
 			tx.begin();
+		
 		Course course = em.find(Course.class, c.getId());
 		em.remove(course);
 		tx.commit();
@@ -114,9 +119,9 @@ public class Dao {
 		System.out.println("dao modifierCourse");
 		System.out.println("dao course id : "+c.getId());
 		EntityTransaction tx = em.getTransaction();
-		if(!tx.isActive()){
+		if(!tx.isActive())
 			tx.begin();
-		}
+		
 		em.merge(c);
 		tx.commit();
 		System.out.println("dao commit");
@@ -126,9 +131,9 @@ public class Dao {
 		System.out.println("dao enregistrerBateau");
 		System.out.println("dao bateau nom : "+b.getNom());
 		EntityTransaction tx = em.getTransaction();
-		if(!tx.isActive()){
+		if(!tx.isActive())
 			tx.begin();
-		}
+		
 		em.persist(b);
 		tx.commit();
 		System.out.println("dao commit");	
@@ -140,6 +145,7 @@ public class Dao {
 		EntityTransaction tx = em.getTransaction();
 		if (!tx.isActive()) 
 			tx.begin();
+		
 		Bateau b = em.find(Bateau.class, id);
 		return b;
 	}
@@ -148,9 +154,9 @@ public class Dao {
 		System.out.println("dao modifierBateau");
 		System.out.println("dao Bateau nom : "+b.getNom());
 		EntityTransaction tx = em.getTransaction();
-		if(!tx.isActive()){
+		if(!tx.isActive())
 			tx.begin();
-		}
+		
 		em.merge(b);
 		tx.commit();
 		System.out.println("dao commit");
@@ -160,6 +166,7 @@ public class Dao {
 		EntityTransaction tx = em.getTransaction();
 		if (!tx.isActive()) 
 			tx.begin();
+		
 		Bateau bateau = em.find(Bateau.class, b.getId());
 		em.remove(bateau);
 		tx.commit();
@@ -169,9 +176,9 @@ public class Dao {
 		System.out.println("dao enregistrerRegate");
 		System.out.println("dao regate nom : "+r.getNom());
 		EntityTransaction tx = em.getTransaction();
-		if(!tx.isActive()){
+		if(!tx.isActive())
 			tx.begin();
-		}
+		
 		em.persist(r);
 		tx.commit();
 		System.out.println("dao commit");	
@@ -181,6 +188,7 @@ public class Dao {
 		EntityTransaction tx = em.getTransaction();
 		if (!tx.isActive()) 
 			tx.begin();
+		
 		Regate regate = em.find(Regate.class, r.getId());
 		em.remove(regate);
 		tx.commit();
@@ -192,20 +200,17 @@ public class Dao {
 		EntityTransaction tx = em.getTransaction();
 		if (!tx.isActive()) 
 			tx.begin();
-		Regate r = em.find(Regate.class, id);
-		System.out.println("DAO returnRegate -> size r.bateaux : " + r.getBateauxInscrits().size());
-		for (Bateau bateau : r.getBateauxInscrits())
-			System.out.println("DAO returnRegate -> bateau.nom : " + bateau.getNom());
 		
+		Regate r = em.find(Regate.class, id);	
 		return r;
 	}
 
 	public void modifierRegate(Regate r) {
 		System.out.println("dao modifierRegate");
 		EntityTransaction tx = em.getTransaction();
-		if(!tx.isActive()){
+		if(!tx.isActive())
 			tx.begin();
-		}
+		
 		em.merge(r);
 		tx.commit();
 		System.out.println("dao commit");
@@ -223,17 +228,6 @@ public class Dao {
 				
 		return listC;
 	}
-
-	/*public List<Bateau> listerRegateBateaux(Integer id) {
-		System.out.println("dao listerRegateBateaux");
-		Regate regate = returnRegate(id);
-		List<Bateau> listB = new ArrayList<Bateau>();
-		
-		for (InscriptionRegate ir : regate.getInscrBateaux())
-			listB.add(ir.getPkIR().getBateau());
-		
-		return listB;
-	}*/
 
 	public void supprimerBateauToRegate(Regate r, Bateau b) {
 		// TODO Auto-generated method stub

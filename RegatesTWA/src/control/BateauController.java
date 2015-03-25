@@ -50,6 +50,7 @@ public class BateauController {
 		b.setNom(bateau.getNom());
 		b.setNationalite(bateau.getNationalite());
 		b.setType(bateau.getType());
+		b.setEquipage(bateau.getEquipage());
 		
 		if(res.getRes().equals("SUCCESS")) {
 			System.out.println("res sucess");

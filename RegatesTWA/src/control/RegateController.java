@@ -36,13 +36,6 @@ public class RegateController {
 		return dao.listerRegateCourses(id);
 	}
 	
-	@RequestMapping(value="/listerRegateBateaux", params= "id", method=RequestMethod.GET)
-	public @ResponseBody List <Bateau> listerRegateBateaux(@RequestParam("id") Integer id) {
-		System.out.println("listerRegates");
-		//return dao.listerRegateBateaux(id);
-		return null;
-	}
-
 	public Resultat convertBindingResult(BindingResult bres) {
 		Resultat res = new Resultat();
 		if(!bres.hasErrors()){
