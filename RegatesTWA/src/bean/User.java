@@ -1,17 +1,16 @@
 package bean;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -19,23 +18,39 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id
+	@Column(name = "numeroLicence")
 	private String numeroLicence;
+	
+	@Column(name = "nom")
 	private String nom;
+	
+	@Column(name = "prenom")
 	private String prenom;
+	
+	@Column(name = "identifiant")
 	private String identifiant;
+	
+	@Column(name = "motDePasse")
 	private String motDePasse;
+	
+	@Column(name = "url")
 	private String url;
+	
+	@Column(name = "nationalite")
 	private String nationalite;
+	
+	@Column(name = "admin")
 	private int admin;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pkE.equipier", cascade=CascadeType.ALL)
-	private List<Equipage> bateaux = new ArrayList<Equipage>();
+    @ManyToMany(mappedBy="equipage")
+    @JsonBackReference
+	private Set<Bateau> bateaux = new HashSet<Bateau>();
 	
 	public User(){
 		
 	}
 
-	@Column(name = "numeroLicence")
+
 	public String getNumeroLicence() {
 		return numeroLicence;
 	}
@@ -43,7 +58,7 @@ public class User {
 		numeroLicence = num;
 	}
 	
-	@Column(name = "nom")
+	
 	public String getNom() {
 		return nom;
 	}
@@ -51,7 +66,7 @@ public class User {
 		nom = n;
 	}
 
-	@Column(name = "prenom")
+
 	public String getPrenom() {
 		return prenom;
 	}
@@ -60,7 +75,6 @@ public class User {
 	}
 	
 	
-	@Column(name = "identifiant")
 	public String getIdentifiant(){
 		return identifiant;
 	}
@@ -68,7 +82,7 @@ public class User {
 		identifiant = i;
 	}
 	
-	@Column(name = "motDePasse")
+
 	public String getMotDePasse(){
 		return motDePasse;
 	}
@@ -76,7 +90,7 @@ public class User {
 		motDePasse = mdp;
 	}
 
-	@Column(name = "url")
+
 	public String getUrl(){
 		return url;
 	}
@@ -84,7 +98,7 @@ public class User {
 		url = u;
 	}
 	
-	@Column(name = "admin")
+
 	public int getAdmin() {
 		return admin;
 	}
@@ -92,7 +106,7 @@ public class User {
 		this.admin = admin;
 	}
 
-	@Column(name = "nationalite")
+	
 	public String getNationalite() {
 		return nationalite;
 	}
@@ -100,10 +114,11 @@ public class User {
 		nationalite = na;
 	}
 
-	public List<Equipage> getBateaux() {
+	
+	public Set<Bateau> getBateaux() {
 		return bateaux;
 	}
-	public void setBateaux(List<Equipage> bateaux) {
+	public void setBateaux(Set<Bateau> bateaux) {
 		this.bateaux = bateaux;
 	}
 

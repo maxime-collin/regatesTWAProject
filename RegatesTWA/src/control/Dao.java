@@ -1,29 +1,18 @@
 package control;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.PersistenceContext;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
-import com.sun.org.apache.xerces.internal.impl.dv.dtd.IDREFDatatypeValidator;
-
-import bean.Bateau;
-import bean.Course;
-import bean.InscriptionCourse;
-import bean.InscriptionRegate;
-import bean.Regate;
-import bean.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+
+import org.springframework.stereotype.Service;
+
+import bean.Bateau;
+import bean.Course;
+import bean.Regate;
+import bean.User;
 
 @Service
 public class Dao {
@@ -204,6 +193,10 @@ public class Dao {
 		if (!tx.isActive()) 
 			tx.begin();
 		Regate r = em.find(Regate.class, id);
+		System.out.println("DAO returnRegate -> size r.bateaux : " + r.getBateaux().size());
+		for (Bateau bateau : r.getBateaux())
+			System.out.println("DAO returnRegate -> bateau.nom : " + bateau.getNom());
+		
 		return r;
 	}
 
@@ -231,7 +224,7 @@ public class Dao {
 		return listC;
 	}
 
-	public List<Bateau> listerRegateBateaux(Integer id) {
+	/*public List<Bateau> listerRegateBateaux(Integer id) {
 		System.out.println("dao listerRegateBateaux");
 		Regate regate = returnRegate(id);
 		List<Bateau> listB = new ArrayList<Bateau>();
@@ -240,7 +233,7 @@ public class Dao {
 			listB.add(ir.getPkIR().getBateau());
 		
 		return listB;
-	}
+	}*/
 
 	public void supprimerBateauToRegate(Regate r, Bateau b) {
 		// TODO Auto-generated method stub

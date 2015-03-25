@@ -39,7 +39,8 @@ public class RegateController {
 	@RequestMapping(value="/listerRegateBateaux", params= "id", method=RequestMethod.GET)
 	public @ResponseBody List <Bateau> listerRegateBateaux(@RequestParam("id") Integer id) {
 		System.out.println("listerRegates");
-		return dao.listerRegateBateaux(id);
+		//return dao.listerRegateBateaux(id);
+		return null;
 	}
 
 	public Resultat convertBindingResult(BindingResult bres) {

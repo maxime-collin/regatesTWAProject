@@ -1,19 +1,21 @@
 package bean;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -22,36 +24,40 @@ public class Bateau {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
 	
+	@Column(name = "numero")
 	private String numero;
-	private String nom;	
+	
+	@Column(name = "nom")
+	private String nom;
+	
+	@Column(name = "type")
 	private String type;
+	
+	@Column(name = "nationalite")
 	private String nationalite;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinColumn(name="capitaine")
-	private User capitaine;
+	@ManyToMany(cascade={CascadeType.PERSIST})
+    @JoinTable(name="r_equipage",joinColumns = @JoinColumn(name = "bateau"), inverseJoinColumns = @JoinColumn(name = "equipier"))
+    @JsonManagedReference
+	private Set<User> equipage = new HashSet<User>();
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pkE.bateau", cascade=CascadeType.ALL)
-	private List<Equipage> equipage = new ArrayList<Equipage>();
+    @ManyToMany(mappedBy="bateaux")
+    @JsonBackReference
+	private Set<Regate> regates = new HashSet<Regate>();
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pkIR.bateau", cascade=CascadeType.ALL)
-	private List<InscriptionRegate> inscrRegates = new ArrayList<InscriptionRegate>();
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pkIC.bateau", cascade=CascadeType.ALL)
-	private List<InscriptionCourse> inscrCourses = new ArrayList<InscriptionCourse>();
 	
 	public Bateau(){
 		
 	}
 	
-	@Column(name = "id")
+	
 	public Integer getId() {
 		return id;
 	}
 	
-	@Column(name = "nom")
 	public String getNom() {
 		return nom;
 	}
@@ -59,7 +65,6 @@ public class Bateau {
 		nom = n;
 	}
 
-	@Column(name = "numero")
 	public String getNumero() {
 		return numero;
 	}
@@ -67,14 +72,6 @@ public class Bateau {
 		this.numero = numero;
 	}
 
-	public User getCapitaine() {
-		return capitaine;
-	}
-	public void setCapitaine(User capitaine) {
-		this.capitaine = capitaine;
-	}
-
-	@Column(name = "type")
 	public String getType() {
 		return type;
 	}
@@ -82,7 +79,6 @@ public class Bateau {
 		this.type = type;
 	}
 
-	@Column(name = "nationalite")
 	public String getNationalite() {
 		return nationalite;
 	}
@@ -90,25 +86,17 @@ public class Bateau {
 		this.nationalite = nationalite;
 	}
 
-	public List<Equipage> getEquipage() {
+	public Set<User> getEquipage() {
 		return equipage;
 	}
-	public void setEquipage(List<Equipage> equipage) {
+	public void setEquipage(Set<User> equipage) {
 		this.equipage = equipage;
 	}
 
-	public List<InscriptionRegate> getInscrRegates() {
-		return inscrRegates;
+	public Set<Regate> getRegates() {
+		return regates;
 	}
-	public void setInscrRegates(List<InscriptionRegate> inscrRegates) {
-		this.inscrRegates = inscrRegates;
+	public void setRegates(Set<Regate> regates) {
+		this.regates = regates;
 	}
-
-	public List<InscriptionCourse> getInscrCourses() {
-		return inscrCourses;
-	}
-	public void setInscrCourses(List<InscriptionCourse> inscrCourses) {
-		this.inscrCourses = inscrCourses;
-	}
-
 }

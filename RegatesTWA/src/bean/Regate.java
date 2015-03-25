@@ -1,20 +1,24 @@
 package bean;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -23,39 +27,52 @@ public class Regate {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
 	
+	@Column(name = "nom")
 	private String nom;
+	
+	@Column(name = "description")
 	private String description;
+	
+	@Column(name = "niveau")
 	private String niveau;
+	
+	@Column(name = "type")
 	private String type;
 	
 	@Temporal(TemporalType.DATE)
+	@Column(name = "dateDebut")
 	private Date dateDebut;
 	
 	@Temporal(TemporalType.TIME)
+	@Column(name = "heureDebut")
 	private Date heureDebut;
 	
 	@Temporal(TemporalType.DATE)
+	@Column(name = "dateFin")
 	private Date dateFin;
 	
 	@Temporal(TemporalType.TIME)
+	@Column(name = "heureFin")
 	private Date heureFin;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pkIR.regate", cascade=CascadeType.ALL)
-	private List<InscriptionRegate> inscrBateaux = new ArrayList<InscriptionRegate>();
+    @ManyToMany(cascade={CascadeType.PERSIST})
+    @JoinTable(name="r_inscriptionRegate",joinColumns = @JoinColumn(name = "regate"), inverseJoinColumns = @JoinColumn(name = "bateau"))
+    @JsonManagedReference
+	private Set<Bateau> bateaux = new HashSet<Bateau>();
 	
 	
 	public Regate(){
 		
 	}
 	
-	@Column(name = "id")
+	
 	public Integer getId() {
 		return id;
 	}
 	
-	@Column(name = "nom")
 	public String getNom() {
 		return nom;
 	}
@@ -63,7 +80,6 @@ public class Regate {
 		nom = n;
 	}
 
-	@Column(name = "description")
 	public String getDescription() {
 		return description;
 	}
@@ -71,7 +87,6 @@ public class Regate {
 		this.description = description;
 	}
 
-	@Column(name = "niveau")
 	public String getNiveau() {
 		return niveau;
 	}
@@ -79,7 +94,6 @@ public class Regate {
 		this.niveau = niveau;
 	}
 
-	@Column(name = "type")
 	public String getType() {
 		return type;
 	}
@@ -87,7 +101,6 @@ public class Regate {
 		this.type = type;
 	}
 
-	@Column(name = "dateDebut")
 	public Date getDateDebut() {
 		return dateDebut;
 	}
@@ -95,7 +108,6 @@ public class Regate {
 		this.dateDebut = dateDebut;
 	}
 
-	@Column(name = "heureDebut")
 	public Date getHeureDebut() {
 		return heureDebut;
 	}
@@ -103,7 +115,6 @@ public class Regate {
 		this.heureDebut = heureDebut;
 	}
 
-	@Column(name = "dateFin")
 	public Date getDateFin() {
 		return dateFin;
 	}
@@ -111,7 +122,6 @@ public class Regate {
 		this.dateFin = dateFin;
 	}
 
-	@Column(name = "heureFin")
 	public Date getHeureFin() {
 		return heureFin;
 	}
@@ -119,11 +129,11 @@ public class Regate {
 		this.heureFin = heureFin;
 	}
 
-	public List<InscriptionRegate> getInscrBateaux() {
-		return inscrBateaux;
+	public Set<Bateau> getBateaux() {
+		return bateaux;
 	}
-	public void setInscrBateaux(List<InscriptionRegate> inscrBateaux) {
-		this.inscrBateaux = inscrBateaux;
+	public void setBateaux(Set<Bateau> bateaux) {
+		this.bateaux = bateaux;
 	}
 
 }
