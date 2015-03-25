@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 25 Mars 2015 à 11:18
+-- Généré le: Mer 25 Mars 2015 à 11:56
 -- Version du serveur: 5.5.41-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.7
 
@@ -38,16 +38,6 @@ CREATE TABLE IF NOT EXISTS `r_bateau` (
   KEY `capitaine` (`capitaine`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Contenu de la table `r_bateau`
---
-
-INSERT INTO `r_bateau`(`id`, `numero`, `nom`, `capitaine`, `type`, `nationalite`) VALUES
-(0,'BR42','Globe-Flotteur','FR56','Fireball','French'),
-(1,'FRA56','Mer-Sea','FR57','Laser','English'),
-(2,'CO55','Optimisme','FR59','Optimist','French'),
-(3,'EN23','Catitude','FR56','Laser','French');
-
 -- --------------------------------------------------------
 
 --
@@ -72,10 +62,7 @@ CREATE TABLE IF NOT EXISTS `r_course` (
 --
 
 INSERT INTO `r_course` (`id`, `numero`, `dateDebut`, `heureDebut`, `dateFin`, `heureFin`, `coefficient`, `regate`) VALUES
-(0, 1, '2015-01-31', '09:00:00', '2015-01-31', '12:0:00', 0.3, 0),
-(1, 2, '2015-01-31', '14:00:00', '2015-01-31', '18:0:00', 0.3, 0),
-(2, 3, '2015-02-01', '09:00:00', '2015-02-01', '18:0:00', 0.4, 0),
-(3, 1, '2015-04-04', '10:00:00', '2015-04-06', '17:00:00', 1, 1);
+(2, 1, '2000-02-01', '01:01:00', '2000-02-01', '01:01:00', 0, 20);
 
 -- --------------------------------------------------------
 
@@ -90,19 +77,6 @@ CREATE TABLE IF NOT EXISTS `r_equipage` (
   KEY `bateau` (`bateau`),
   KEY `equipier` (`equipier`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `r_equipage`
---
-
-INSERT INTO `r_equipage`(`bateau`, `equipier`) VALUES
-(0,'FR56'),
-(0,'FR57'),
-(1,'FR57'),
-(1,'FR58'),
-(2,'FR59'),
-(3,'FR56'),
-(3,'FR57');
 
 -- --------------------------------------------------------
 
@@ -128,11 +102,10 @@ CREATE TABLE IF NOT EXISTS `r_equipier` (
 --
 
 INSERT INTO `r_equipier` (`numeroLicence`, `identifiant`, `admin`, `motDePasse`, `nom`, `prenom`, `url`, `nationalite`) VALUES
-('FR55', 'admin', 1, 'admin', 'admin', 'root', '', 'French'),
-('FR56', 'Gwenaelle', 0, 'Gwenaelle', 'Joulie', 'Gwenaelle', 'http://asso.ffv.fr/matchracing/2001/coureurs/fiche_joulie.htm', 'French'),
-('FR57', 'Cyrille', 1, 'Cyrille', 'Legloahec', 'Cyrille', 'http://asso.ffv.fr/matchracing/2001/coureurs/fiche_leglohaec.htm', 'English'),
-('FR58', 'Claire', 0, 'Claire', 'Pruvot', 'Claire', 'http://www.clairepruvot.com/', 'French'),
-('FR59', 'Benoît', 0, 'Benoît', 'Petit', 'Benoît', 'http://asso.ffv.fr/matchracing/2001/coureurs/fiche_petit.htm', 'French');
+('FR55', 'admin', 1, 'admin', 'admin', 'root', 'htt://www.test.com', 'French'),
+('FR56', 'max', 0, 'max', 'Collin', 'Maxime', 'htt://www.test.com', 'French'),
+('FR57', 'js', 1, 'js', 'Rolland', 'Jean-Sébastien', 'htt://www.test.com', 'English'),
+('FR58', 'toto', 0, 'toto', 'toto', 'toto', 'htt://www.test.com', 'French');
 
 -- --------------------------------------------------------
 
@@ -141,7 +114,7 @@ INSERT INTO `r_equipier` (`numeroLicence`, `identifiant`, `admin`, `motDePasse`,
 --
 
 CREATE TABLE IF NOT EXISTS `r_inscriptionCourse` (
-  `classement` int(11),
+  `classement` int(11) NOT NULL,
   `dateArrivee` date DEFAULT NULL,
   `heureArrivee` time NOT NULL,
   `course` int(11) NOT NULL,
@@ -158,23 +131,13 @@ CREATE TABLE IF NOT EXISTS `r_inscriptionCourse` (
 --
 
 CREATE TABLE IF NOT EXISTS `r_inscriptionRegate` (
-  `classement` int(11) DEFAULT NULL,
+  `classement` int(11) NOT NULL,
   `regate` int(11) NOT NULL,
   `bateau` int(11) NOT NULL,
   PRIMARY KEY (`regate`,`bateau`),
   KEY `regate` (`regate`),
   KEY `bateau` (`bateau`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `r_inscriptionRegate`
---
-
-INSERT INTO `r_inscriptionRegate`(`classement`, `regate`, `bateau`) VALUES 
-(1,0,1),
-(2,0,3),
-(NULL,1,0),
-(NULL,1,2);
 
 -- --------------------------------------------------------
 
@@ -200,8 +163,9 @@ CREATE TABLE IF NOT EXISTS `r_regate` (
 --
 
 INSERT INTO `r_regate` (`id`, `nom`, `dateDebut`, `heureDebut`, `dateFin`, `heureFin`, `description`, `niveau`, `type`) VALUES
-(0, 'Les pieds gelés', '2015-01-31', '09:00:00', '2015-02-01', '18:0:00', '', 'Departementale', 'Laser'),
-(1, 'Esperance', '2015-04-04', '10:00:00', '2015-04-06', '17:00:00', '', 'Ligue', 'InterSeries');
+(18, 'test3', '2000-02-01', '01:01:00', '2000-02-01', '01:01:00', '', 'Departementale', '420'),
+(19, 'test4', '2000-02-01', '01:01:00', '2000-02-01', '01:01:00', '', 'Departementale', '420'),
+(20, 'aie2', '2000-02-01', '01:01:00', '2000-02-01', '01:01:00', '', 'InterLigue', '470');
 
 --
 -- Contraintes pour les tables exportées
