@@ -1,19 +1,20 @@
 <!-- $dirty	True if regate has already interacted with the form. -->
 <div class="row">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<label>Intitulé * :</label>
 		</div>
-		<div class="col-md-7">
-			<input 	id="nom"
-				name="nom"
-				value="regate.nom"
-				ng-model="regate.nom"
-				ng-model-options="{ updateOn: 'blur' }"
-				required
-				type="text"
-			/>
-		</div>
+		<div class="col-md-8">
+			<div class="col-md-3">		
+				<input 	id="nom"
+					name="nom"
+					value="regate.nom"
+					ng-model="regate.nom"
+					ng-model-options="{ updateOn: 'blur' }"
+					required
+					type="text"
+				/>
+		</div></div>
 	</div>
 	<div class="row" ng-show="form.nom.$dirty">
 		<div ng-show="form.nom.$error.required">Veuillez saisir un Intitulé</div>
@@ -25,17 +26,18 @@
 
 <div class="row">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<label>Niveau * :</label>
 		</div>
-		<div class="col-md-7">
-			<select 	id="niveau"
-						name="niveau"
-						ng-model="$parent.selectedNiveau"
-						ng-options="niveau as niveau.label for niveau in niveaux"
-						required
-			></select>
-		</div>
+		<div class="col-md-8">
+			<div class="col-md-3">
+				<select 	id="niveau"
+							name="niveau"
+							ng-model="$parent.selectedNiveau"
+							ng-options="niveau as niveau.label for niveau in niveaux"
+							required
+				></select>
+		</div></div>
 	</div>
 	<div class="row" ng-show="form.niveau.$dirty">
 		<div ng-show="form.niveau.$error.required">Veuillez saisir un niveau</div>
@@ -44,18 +46,19 @@
 
 <div class="row">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<label>Type * :</label>
 		</div>
-		<div class="col-md-7">
-			<select 	id="type"
-						name="type"
-						ng-model="$parent.selectedType" 
-						ng-model-options="{ updateOn: 'blur' }"
-						ng-options="type as type.label for type in types"
-						required
-			></select>
-		</div>
+		<div class="col-md-8">
+			<div class="col-md-3">
+				<select 	id="type"
+							name="type"
+							ng-model="$parent.selectedType" 
+							ng-model-options="{ updateOn: 'blur' }"
+							ng-options="type as type.label for type in types"
+							required
+				></select>
+		</div></div>
 	</div>
 	<div class="row" ng-show="form.type.$dirty">
 		<div ng-show="form.type.$error.required">Veuillez saisir un type</div>
@@ -64,17 +67,18 @@
 
 <div class="row">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<label>Description :</label>
 		</div>
-		<div class="col-md-7">
-			<textarea 	id="description"
-				name="description"
-				value="regate.description"
-				ng-model="regate.description" 
-				ng-model-options="{ updateOn: 'blur' }"
-			></textarea>
-		</div>
+		<div class="col-md-8">
+			<div class="col-md-3">
+				<textarea 	id="description"
+					name="description"
+					value="regate.description"
+					ng-model="regate.description" 
+					ng-model-options="{ updateOn: 'blur' }"
+				></textarea>
+		</div></div>
 	</div>
 	<div class="row" ng-show="form.description.$dirty">
 	</div>

@@ -26,7 +26,7 @@ monAppControllers.controller('RegateController', [
     	$scope.dateFinPicker.hour = 1;
     	$scope.dateFinPicker.min = 1;
     	
-    	$scope.regate.inscrBateaux = [];
+    	$scope.regate.bateauxInscrits = [];
     	
     	// liste des niveaux a afficher dans le select    	
     	$scope.niveaux = [
@@ -77,7 +77,6 @@ monAppControllers.controller('RegateController', [
     			params : { id : $routeParams.regateId }
     		}).success(function(data) {
     				$scope.regate = data;
-    				console.log($scope.regate.toSource());
     		});
     		    		
     		$http({
@@ -103,9 +102,7 @@ monAppControllers.controller('RegateController', [
     			params : { id : $scope.currentUser.id }
     		}).success(function(data) {
     					$scope.userBateaux = data;
-    					// rajoute un label pour
-    					// l'affichage dans le
-    					// select
+    					// rajoute un label pour l'affichage dans le  select
     					for (var i = 0; i < $scope.userBateaux.length; i++)
     						$scope.userBateaux[i].label = 	$scope.userBateaux[i].numero
     														+ " " + $scope.userBateaux[i].nom
@@ -186,8 +183,7 @@ monAppControllers.controller('RegateController', [
     						$scope.mess = "Regate " + $scope.regate.nom + " enregistrée";
     						$location.path("/regates");
     					}
-    				});
-    		
+    				});    		
     	};
     	
     	// recupere la regate que l'on veut modifier
@@ -215,6 +211,10 @@ monAppControllers.controller('RegateController', [
     	};
     	
     	$scope.updateRegate = function() {
+    		$scope.convertDate();
+    		$scope.regate.niveau = $scope.selectedNiveau.value;
+    		$scope.regate.type = $scope.selectedType.value;
+    		
     		$http({
     			method : 'POST',
     			url : 'modifierRegate.htm',
