@@ -21,6 +21,11 @@ import javax.persistence.TemporalType;
 @Table( name = "r_course" )
 public class Course implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9085970911562956459L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;

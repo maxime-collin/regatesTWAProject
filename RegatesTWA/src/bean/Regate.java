@@ -14,11 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -26,6 +26,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table( name = "r_regate" )
 public class Regate implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3784928680313231596L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -59,10 +64,9 @@ public class Regate implements Serializable {
 	@Column(name = "heureFin")
 	private Date heureFin;
 	
-    @ManyToMany(cascade={CascadeType.PERSIST})
-    @JoinTable(name="r_inscriptionRegate",joinColumns = @JoinColumn(name = "regate"), inverseJoinColumns = @JoinColumn(name = "bateau"))
-    @JsonManagedReference
-	private Set<Bateau> bateauxInscrits = new HashSet<Bateau>();
+    @OneToMany(mappedBy = "irRegate", cascade = { CascadeType.REMOVE }) 
+    @JsonManagedReference("refIR.regate")
+	private Set<InscriptionRegate> bateauxInscrits = new HashSet<InscriptionRegate>();
 	
 	
 	public Regate(){
@@ -130,10 +134,10 @@ public class Regate implements Serializable {
 		this.heureFin = heureFin;
 	}
 
-	public Set<Bateau> getBateauxInscrits() {
+	public Set<InscriptionRegate> getBateauxInscrits() {
 		return bateauxInscrits;
 	}
-	public void setBateauxInscrits(Set<Bateau> bateauxInscrits) {
+	public void setBateauxInscrits(Set<InscriptionRegate> bateauxInscrits) {
 		this.bateauxInscrits = bateauxInscrits;
 	}
 

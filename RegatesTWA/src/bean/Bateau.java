@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -23,6 +24,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table( name = "r_bateau" )
 public class Bateau implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2180705953648956919L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -40,14 +46,13 @@ public class Bateau implements Serializable {
 	@Column(name = "nationalite")
 	private String nationalite;
 	
-	@ManyToMany(cascade={CascadeType.PERSIST})
-    @JoinTable(name="r_equipage",joinColumns = @JoinColumn(name = "bateau"), inverseJoinColumns = @JoinColumn(name = "equipier"))
-    @JsonManagedReference
-	private Set<User> equipage = new HashSet<User>();
+    @OneToMany(mappedBy = "eBateau", cascade = { CascadeType.REMOVE }) 
+    @JsonManagedReference("refE.bateau")
+	private Set<Equipage> equipage = new HashSet<Equipage>();
 	
-    @ManyToMany(mappedBy="bateauxInscrits")
-    @JsonBackReference
-	private Set<Regate> regates = new HashSet<Regate>();
+    @OneToMany(mappedBy = "irBateau", cascade = { CascadeType.REMOVE }) 
+    @JsonManagedReference("refIR.bateau")
+	private Set<InscriptionRegate> regates = new HashSet<InscriptionRegate>();
 	
 	
 	public Bateau(){
@@ -87,17 +92,17 @@ public class Bateau implements Serializable {
 		this.nationalite = nationalite;
 	}
 
-	public Set<User> getEquipage() {
+	public Set<Equipage> getEquipage() {
 		return equipage;
 	}
-	public void setEquipage(Set<User> equipage) {
+	public void setEquipage(Set<Equipage> equipage) {
 		this.equipage = equipage;
 	}
 
-	public Set<Regate> getRegates() {
+	public Set<InscriptionRegate> getRegates() {
 		return regates;
 	}
-	public void setRegates(Set<Regate> regates) {
+	public void setRegates(Set<InscriptionRegate> regates) {
 		this.regates = regates;
 	}
 }

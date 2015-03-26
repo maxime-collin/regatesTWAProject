@@ -9,10 +9,9 @@ monAppControllers.controller('BateauController', [
 	    $scope.bateau.id = "";
 	    $scope.bateau.numero = "";
 	    $scope.bateau.nom = "";
-	    $scope.bateau.capitaine = $scope.currentUser;
 	    $scope.bateau.type = "";
 	    $scope.bateau.nationalite = "";
-	    $scope.bateau.equipage =  [];
+	    $scope.bateau.equipage = [];
 	   
 	    // liste des types a afficher dans le select
 		$scope.types = [
@@ -128,6 +127,7 @@ monAppControllers.controller('BateauController', [
 		$scope.updateBateau = function (){
 			$scope.bateau.type = $scope.selectedType.value;
 			$scope.bateau.nationnalite = $scope.selectedNationnalite.value;
+			$scope.bateau.equipage = $scope.equipierSelection;
 			
 			$http({
 				method: 'POST',

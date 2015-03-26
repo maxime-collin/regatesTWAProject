@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -18,6 +20,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table( name = "r_equipier" )
 public class User implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2507028281333394890L;
+
 	@Id
 	@Column(name = "numeroLicence")
 	private String numeroLicence;
@@ -43,9 +50,9 @@ public class User implements Serializable {
 	@Column(name = "admin")
 	private int admin;
 	
-    @ManyToMany(mappedBy="equipage")
-    @JsonBackReference
-	private Set<Bateau> bateaux = new HashSet<Bateau>();
+	@OneToMany(mappedBy = "eEquipier", cascade = { CascadeType.REMOVE }) 
+	@JsonManagedReference("refE.user")
+	private Set<Equipage> bateaux = new HashSet<Equipage>();
 	
 	public User(){
 		
@@ -116,10 +123,10 @@ public class User implements Serializable {
 	}
 
 	
-	public Set<Bateau> getBateaux() {
+	public Set<Equipage> getBateaux() {
 		return bateaux;
 	}
-	public void setBateaux(Set<Bateau> bateaux) {
+	public void setBateaux(Set<Equipage> bateaux) {
 		this.bateaux = bateaux;
 	}
 
