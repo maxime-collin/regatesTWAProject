@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import bean.User;
 
@@ -119,4 +121,21 @@ public class UserController {
 			return res;
 		}
 
+	 @RequestMapping(value="/connectUser",method=RequestMethod.POST)
+		public @ResponseBody Resultat connectUser(
+				@RequestBody @Valid Object connection, BindingResult bres) {
+		 		
+		 	JSONObject json = (JSONObject) connection;
+		 	String identifiant = (String) json.get("identifiant");
+		 	System.out.println("connectUser id "+identifiant);
+		 	String password = (String) json.get("password");
+		 	
+			Resultat res = convertBindingResult(bres);
+			
+			if(res.getRes().equals("SUCCESS")) {
+				System.out.println("res sucess");
+				dao.connectUser(identifiant, password);
+			}
+			return res;
+		}
 }

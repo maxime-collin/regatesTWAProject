@@ -78,6 +78,20 @@ public class Dao {
 		tx.commit();
 		System.out.println("dao commit");
 	}
+	
+	public boolean connectUser(String identifiant, String password){
+		System.out.println("dao connectUser");
+		EntityTransaction tx = em.getTransaction();
+		if (!tx.isActive()) 
+			tx.begin();
+		
+		User u = em.find(User.class, identifiant);
+		em.remove(u);
+		tx.commit();
+		if(u.getMotDePasse() == password)
+			return true;
+		return false;
+	}
 
 	public void enregistrerCourse(Course course, int regateId) {
 		System.out.println("dao enregistrerCourse");

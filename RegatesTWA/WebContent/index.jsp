@@ -38,10 +38,12 @@
 			<div id="corps" ng-view></div>
 		</div>
 		
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-		<script type="text/javascript" src="https://code.angularjs.org/1.3.14/angular-route.js"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/angular-route.js"></script>
 
+		<script type="text/javascript" src="js/authenticate.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
+		
 		<script type="text/javascript" src="js/controllers/user.js"></script>
 		<script type="text/javascript" src="js/controllers/regate3.js"></script>
 		<script type="text/javascript" src="js/controllers/course.js"></script>

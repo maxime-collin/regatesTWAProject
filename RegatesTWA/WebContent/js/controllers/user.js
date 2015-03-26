@@ -12,7 +12,7 @@ monAppControllers.controller('UserController', [
 		
 		$scope.connection = {};
 		$scope.connection.identifiant = "";
-		$scope.connection.mdp = "";
+		$scope.connection.password = "";
 		
 		$scope.$watch('$viewContentLoaded', function(){
 			$http({
@@ -25,17 +25,25 @@ monAppControllers.controller('UserController', [
 		 });
 		
 		$scope.connect = function() {
+			console.log("connect envoyé");
+			console.log(JSON.parse(JSON.stringify($scope.connection)));
 			$http({
 				method: 'POST',
 				url: 'connectUser.htm',
 				headers: {'Content-Type': 'application/json'},
 				data:  $scope.connection
 			}).success(function (data) {
+				AuthenticateJS.getLoggedinUser();
 				$scope.erreurs = data;
 				if(data.res == "SUCCESS"){
 					$scope.mess = "User " + $scope.user.nom + " connecté";
-				}				
+				}
 			});
+		};
+		
+		$scope.logout = function() {
+			AuthenticateJS.logout();
+			$location.path("/connect");
 		};
 		
 		$scope.redirectToAddUser = function() {
